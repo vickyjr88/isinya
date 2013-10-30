@@ -187,17 +187,22 @@ body{
 	margin-bottom:20px;
 	padding:10px 0;
 	}
+#footer-outer{
+	width:100%;
+	background: url(../img/footer-bg.jpg);
+	padding-top:6px;
+		margin-top:30px;
+}
 #footer{
 	width:100%;
 	background:#f0f0f0;
-	margin-top:30px;
 	overflow:hidden;
 	padding:20px 0;
 	}
 
-#footer-wrap{
+#footer-wrap, .login-wrap{
 	width:100%;
-	max-width:645px;
+	max-width:745px;
 	margin:0 auto;
 	}
 	
@@ -213,3 +218,12 @@ body{
 }
 .social-ico1{
 }
+
+.login-panels{
+	text-align:center;
+	padding:50px 20px;
+	}
+	
+.login-panels h4{
+	color:#144b74;
+	}
