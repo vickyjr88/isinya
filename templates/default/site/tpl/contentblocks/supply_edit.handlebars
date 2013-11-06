@@ -1,0 +1,223 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>{{#if addform}}Add New{{else}}Edit{{/if}} Supply Item</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{>../blocks/message}}
+		{{#unless addform}}	<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#item-general{{#if addform}}-add{{/if}}" data-toggle="tab">Item Information</a>
+				</li>
+				<li>
+					<a href="#comments-tab" data-toggle="tab" class="ajax-load-tab" data-href="{{controller_base_url}}comments/{{content_data.supply_id}}">Comments</a>
+				</li>
+				<li>
+					<a href="#transactions-tab" data-toggle="tab" class="ajax-load-tab" data-href="{{controller_base_url}}transactions/{{content_data.supply_id}}">Transactions</a>
+				</li>
+				<li>
+					<a href="#locations-tab" data-toggle="tab" class="ajax-load-tab" data-href="{{controller_base_url}}locations/{{content_data.supply_id}}">Locations</a>
+				</li>
+				<li>
+					<a href="#image-tab" data-toggle="tab" class="ajax-load-tab" data-href="{{controller_base_url}}images/{{content_data.supply_id}}">Item images</a>
+				</li>
+				<li>
+					<a href="#barcode-tab" data-toggle="tab" class="ajax-load-tab" data-href="{{controller_base_url}}generate_barcode/{{content_data.supply_id}}">Barcode</a>
+				</li>
+
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="item-general">{{/unless}}
+
+					{{#with content_data}}
+					<form action="{{../ajax_save_url}}" method="post" class="form-horizontal"  id="modal-form{{#if ../addform}}-add{{/if}}">
+						<div class="row-fluid">
+						<div class="span8">
+							<div class="control-group {{#key_in_array ../errors "product_code"}}error{{/key_in_array}}">
+								<label class="control-label" for="product_code">Item Code</label>
+								<div class="controls">
+									<input type="text" id="product_code" name="product_code" placeholder="" value="{{product_code}}">
+									<span class="help-inline error">{{#get_first_error ../errors "product_code"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "supply_name"}}error{{/key_in_array}}">
+								<label class="control-label" for="target_level">Item Name</label>
+								<div class="controls">
+									<input type="text" id="supply_name" name="supply_name" placeholder="" value="{{supply_name}}">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_name"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "supply_type_id"}}error{{/key_in_array}}">
+								<label class="control-label" for="supply_type_id">Category</label>
+								<div class="controls">
+									<select name="supply_type_id">
+										{{#each ../supply_types}}
+										<option value="{{supply_type_id}}" {{#equals_to supply_type_id ../supply_type_id}}selected="selected"{{/equals_to}}>{{supply_type_name}}</option>
+										{{/each}}
+									</select>
+									<span class="help-inline error">{{#get_first_error ../errors "supply_type_id"}}</span>
+								</div>
+							</div>
+
+							<div class="control-group {{#key_in_array ../errors "unit_type_id"}}error{{/key_in_array}}">
+								<label class="control-label" for="unit_type_id">Type (Units)</label>
+								<div class="controls">
+									<select name="unit_type_id">
+										{{#each ../unit_types}}
+											<option value="{{unit_type_id}}" {{#equals_to unit_type_id ../unit_type_id}}selected="selected"{{/equals_to}}>{{unit_type_name}}</option>
+										{{/each}}
+									</select>
+									<span class="help-inline error">{{#get_first_error ../errors "unit_type_id"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "package_type_id"}}error{{/key_in_array}}">
+								<label class="control-label" for="package_type_id">Package Type</label>
+								<div class="controls">
+									<select name="package_type_id">
+										{{#each ../package_types}}
+											<option value="{{package_type_id}}" {{#equals_to package_type_id ../package_type_id}}selected="selected"{{/equals_to}}>{{package_type_name}}</option>
+										{{/each}}
+									</select>
+									<span class="help-inline error">{{#get_first_error ../errors "package_type_id"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "quantity_per_package"}}error{{/key_in_array}}">
+								<label class="control-label" for="quantity_per_package">Qty per package type</label>
+								<div class="controls">
+									<input type="text" id="quantity_per_package" name="quantity_per_package" placeholder="" value="{{quantity_per_package}}">
+									<span class="help-inline error">{{#get_first_error ../errors "quantity_per_package"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "price_per_package"}}error{{/key_in_array}}">
+								<label class="control-label" for="price_per_package">Price per package type</label>
+								<div class="controls">
+									<input type="text" id="price_per_package" name="price_per_package" placeholder="" value="{{price_per_package}}">
+									<span class="help-inline error">{{#get_first_error ../errors "price_per_package"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "price_per_unit"}}error{{/key_in_array}}">
+								<label class="control-label" for="price_per_unit">Price/Unit</label>
+								<div class="controls">
+									<input type="text" id="price_per_unit" name="price_per_unit" placeholder="" value="{{price_per_unit}}">
+									<span class="help-inline error">{{#get_first_error ../errors "price_per_unit"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "reorder_level"}}error{{/key_in_array}}">
+								<label class="control-label" for="reorder_level">Reorder Level</label>
+								<div class="controls">
+									<input type="text" id="reorder_level" name="reorder_level" placeholder="" value="{{reorder_level}}">
+									<span class="help-inline error">{{#get_first_error ../errors "reorder_level"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "target_level"}}error{{/key_in_array}}">
+								<label class="control-label" for="target_level">Target Stock Level</label>
+								<div class="controls">
+									<input type="text" id="target_level" name="target_level" placeholder="" value="{{target_level}}">
+									<span class="help-inline error">{{#get_first_error ../errors "target_level"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "percentage_limit"}}error{{/key_in_array}}">
+								<label class="control-label" for="target_level">Level Percentage Limit</label>
+								<div class="controls">
+									<input type="text" id="percentage_limit" name="percentage_limit" placeholder="" value="{{percentage_limit}}">
+									<span class="help-inline error">{{#get_first_error ../errors "percentage_limit"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+								<label class="control-label" for="supply_description">Description</label>
+								<div class="controls">
+									<textarea name="supply_description" rows="6" class="span6">{{supply_description}}</textarea>
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+							</div>
+							<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+									<label class="control-label" for="supply_description"></label>
+									<div class="controls">
+							<input type="hidden" id="total_quantity" value="{{total_quantity}}" name="total_quantity" />
+							<input type="hidden" value="{{supply_id}}" name="id" />
+							<input type="hidden" value={{#if ../save_failed}}"0"{{/if}}{{#unless ../save_failed}}"1"{{/unless}} name="saved" />
+							<input type="hidden" value={{#if ../added_record}}"1"{{/if}}{{#unless ../added_record}}"0"{{/unless}} name="new_row" />
+							</div>
+							</div>
+							</div>
+
+							<div class="span4">
+							{{#if ../addform}}<p class="fieldset-title" style="text-transform: uppercase;">Upload item images below</p>
+							<p class="fieldset-title">Main Item image</p>{{/if}}
+							{{#unless ../addform}}
+							<ul class="ace-thumbnails">
+							<li id="supply-thumb-{{supply_id}}" style="height: 300px; border:none;">
+								<img src="{{../{{component_base_url}}assets/supplies/{{avatar}}"  class="large-thumbnail" >
+								<div class="tools tools-bottom">
+									<a data-url="supplies/delete_main_item_image/{{supply_id}}" class="confirm-delete"
+									data-msg="Are you sure you want to delete this image"><i class="icon-remove red"></i></a>
+								</div>
+							</li>
+							</ul>
+
+							{{/unless}}
+						<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+								<div class="controls">
+									<input type="file" id="item_avatar" name="item_avatar" placeholder="" value="">
+								</div>
+						</div>
+						{{#if ../addform}}
+						<p class="fieldset-title">Other images</p>
+						<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+								<div class="controls">
+									<input type="file" id="image1" name="image1" placeholder="" value="{{target_level}}">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+						</div>
+						<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+
+								<div class="controls">
+									<input type="file" id="image2" name="image2" placeholder="" value="{{target_level}}">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+						</div>
+					<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+
+								<div class="controls">
+									<input type="file" id="image3" name="image3" placeholder="" value="{{target_level}}">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+						</div>
+					<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+
+								<div class="controls">
+									<input type="file" id="image4" name="image4" placeholder="" value="{{target_level}}">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+						</div>
+					<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+								<div class="controls">
+									<input type="file" id="image5" name="image5" placeholder="" value="{{target_level}}">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+						</div>
+						{{/if}}
+							</div>
+
+						</div>
+					</form>
+					<button class="btn btn-minier btn-info child-modal" title="View more details" data-width="700" data-href="{{../controller_base_url}}item_details/{{supply_id}}">View more details</button>
+					{{/with}}
+					{{#unless addform}}					
+				</div>
+				<div class="tab-pane" id="comments-tab"><p>Loading items..</p></div>
+				<div class="tab-pane" id="transactions-tab"><p>Loading items..</p></div>
+				<div class="tab-pane" id="locations-tab"><p>Loading items..</p></div>
+				<div class="tab-pane" id="image-tab"><p>Loading items..</p></div>
+				<div class="tab-pane" id="barcode-tab"><p>Loading items..</p></div>
+			</div>
+		</div>
+		{{/unless}}
+
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form{{#if addform}}-add{{/if}}" data-row-data="supplyTableRowData">Save changes</button>
+</div>

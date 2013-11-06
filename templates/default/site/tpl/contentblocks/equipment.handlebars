@@ -1,0 +1,43 @@
+<div class="button-bar">
+{{#user_can EQUIPMENT_EDIT}}
+	<span class="buttons"> <a class="btn btn-mini btn-primary ajax-modal" data-width="900" href="#add-equipment" data-href="{{controller_base_url}}edit"><i class="icon-plus"></i> Equipment</a> </span>
+{{/user_can}}
+</div>
+{{#user_can EQUIPMENT_VIEW}}
+<div id="grid-view" class="row-fluid">
+	{{#each content_data}}
+		<div class="group" data-group = "{{group}}">
+			<div class="vcard-separator">
+				<span class="group-heading">{{group}}</span>
+			</div>
+			{{#each equipment}}
+				<div class="well well-small vcard" id="list-item-{{equipment_id}}" data-id="{{equipment_id}}">
+					<img class="avatar" src="{{#if equipment_avatar}}{{../../component_base_url}}assets/avatars/{{equipment_avatar}}{{else}}{{../../template_path}}avatars/default.png{{/if}}" class="img-polaroid" />
+					<span class="title">{{equipment_name}}</span>
+					<span class="serial">{{serial_number}}</span>
+					<span class="capacity">{{production_capacity}}</span>
+					{{#user_can EQUIPMENT_EDIT}}<a class="ajax-modal" data-width="900"  data-href="{{../../controller_base_url}}edit/{{equipment_id}}">Edit</a>&nbsp;&nbsp;{{/user_can}}
+					{{#user_can EQUIPMENT_EDIT}}<a class=" confirm-action text-error" title="Delete" data-toggle="tooltip" data-href="{{../../controller_base_url}}delete/{{equipment_id}}" data-ajax="0" data-msg="Are you sure you want to delete {{equipment_name}}?">Delete</a>{{/user_can}}
+				</div>
+			{{/each}}
+		</div>
+	{{/each}}
+</div>
+{{/user_can}}
+<script type="text/javascript">
+	window.equipmentBlockData = function(formData, newBlock){
+		var id = formData['id']; var iname = formData['equipment_name'];
+		var actions = null;
+		if (newBlock){
+			actions = '<a class="ajax-modal" data-width="900"  data-href="{{controller_base_url}}edit/' + id + '">Edit</a>&nbsp;&nbsp;';
+			actions += '<a class=" confirm-action" title="Delete" data-toggle="tooltip" data-href="{{controller_base_url}}delete/'+ id +'" data-ajax="0" data-msg="Are you sure you want to delete'+iname+'?">Delete</a>';
+		}
+		return [
+			formData['equipment_avatar'],
+			formData['equipment_name'],
+			formData['serial_number'] ,
+			formData['production_capacity'],
+			actions,
+		];
+	}
+</script>

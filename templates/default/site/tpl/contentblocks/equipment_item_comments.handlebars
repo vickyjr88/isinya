@@ -1,0 +1,38 @@
+<div class="span12">
+	<div id="ajax-message"></div>
+	<!-- Begin commnets form  -->
+	<div class="accordion" id="commnets-form">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#comment"><i class="icon-plus-sign"></i> Add Comment </a>
+			</div>
+			<div id="comment" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<form action="{{current_url}}" method="post" id="modal-comment-form">
+						<div class="control-group">
+							<div class="controls">
+								<textarea placeholder="Type your comment here..." name="equipment_note_description" rows="4" class="span5">{{equipment_note_description}}</textarea>
+							</div>							
+						</div>
+						<a class="btn btn-primary btn-small submit-form-ajax" data-form="modal-comment-form">Save Comment</a>						
+					</form>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<!-- End commnets form  -->
+	<!-- Begin Commnets List -->
+	<div class="well">
+	{{#if content_data}}
+		{{#each content_data}}
+		    <blockquote>
+			    {{equipment_note_description}}		    
+			    <small class="pull-right"><span class="label label-info">Admin</span> <span class="label label-warning">{{equipment_note_timestamp}}</span></small>
+		    </blockquote>
+		{{/each}}
+	{{else}}
+	<p>No items found.</p>
+	{{/if}}
+	</div>
+	<!--  End comments list -->
+</div>

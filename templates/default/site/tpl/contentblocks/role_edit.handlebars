@@ -1,0 +1,83 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+		&times;
+	</button>
+	<h3>{{#if addform}}Add New{{else}}Edit{{/if}} User Type</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{>../blocks/message}}
+		{{#unless addform}}
+		<div>
+			{{/unless}}
+			{{#with content_data}}
+			<form action="{{../ajax_save_url}}" method="post" class="form-horizontal" id="modal-form{{#if ../addform}}-add{{/if}}">
+				<div class="row-fluid">
+					<p class="fieldset-title">
+						Role information
+					</p>
+					<div class="control-group {{#key_in_array ../errors "name"}}error{{/key_in_array}}">
+						<label class="control-label" for="name">Name</label>
+						<div class="controls">
+							<input type="text" id="name" name="name" value="{{name}}">
+							<span class="help-inline error">{{#get_first_error ../errors "name"}}</span>
+						</div>
+					</div>
+					<div class="control-group {{#key_in_array ../errors "description"}}error{{/key_in_array}}">
+						<label class="control-label" for="description">Description</label>
+						<div class="controls">
+							<textarea id="description" name="description">{{description}}</textarea>
+							<!-- <input type="text" id="description" name="description" value="{{description}}"> -->
+							<span class="help-inline error">{{#get_first_error ../errors "description"}}</span>
+						</div>
+					</div>
+					{{/with}}
+					<p class="fieldset-title">
+						Manage Permissionspermission-accordion
+					</p>
+				
+					<div class="accordion" id="">	
+						{{#each resources}}													
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#permission-accordion" href="#{{resource_name}}"> {{resource_name}}</a>
+							</div>
+							<div id="{{resource_name}}" class="accordion-body collapse" style="height: auto;">
+								<div class="accordion-inner">
+									<div class="row-fluid">
+										{{#each get_permissions}}
+										<div class="span4">
+											<label><span >{{resource_permission}}</span>
+												<input type="checkbox" {{#each ../../content_data.get_role_permissions}}
+												{{#equals_to id ../id}}checked='checked'{{/equals_to}}
+												{{/each}}class="ace-switch ace-switch-5" name="permission_ids[]" value="{{id}}">
+												<span class="lbl"></span></label>
+										</div>
+										{{/each}}
+									</div>
+								</div>
+							</div>
+						</div>						
+						{{/each}}
+						</div>
+					
+					{{#with content_data}}
+				</div>
+				<input type="hidden" value="{{id}}" name="id" />
+				<input type="hidden" value={{#if ../save_failed}}"0"{{/if}}{{#unless ../save_failed}}"1"{{/unless}} name="saved" />
+				<input type="hidden" value={{#if ../added_record}}"1"{{/if}}{{#unless ../added_record}}"0"{{/unless}} name="new_row" />
+			</form>
+			{{/with}}
+			{{#unless addform}}
+		</div>
+		{{/unless}}
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">
+		Close
+	</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form{{#if addform}}-add{{/if}}">
+		Save changes
+	</button>
+</div>

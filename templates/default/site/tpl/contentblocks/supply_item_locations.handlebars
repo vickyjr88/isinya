@@ -1,0 +1,32 @@
+<div class="span12">
+	{{#if content_data}}
+	<table class="table table-striped table-bordered table-hover table-condensed data-table">
+		<thead>
+			<tr>
+				<th class="center">#</th>
+				<th>Location</th>
+				<th>Quantity on Hand</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#iter itemlocations}}
+			<tr>
+				<td class="center">{{@index}}</td>
+				<td>{{supply_shelf_name}}, {{supply_location_name}}</td>
+				<td>{{shelf_qty}} Units</td>
+				<td>
+					<div class="hidden-phone visible-desktop">
+						<button class="btn btn-minier btn-info child-modal" title="Move" data-width="500" data-href="{{../controller_base_url}}allocate_item/{{../content_data.supply_id}}?sssp_id={{supply_shelves_supply_purchases_id}}"><i class="icon-minus-sign"> Pull </i></button>
+						<button class="btn btn-minier btn-info child-modal" title="Move" data-width="500" data-href="{{../controller_base_url}}move_item/{{supply_shelves_supply_purchases_id}}"><i class="icon-exchange"> Move</i></button>
+						<button class="btn btn-minier btn-info child-modal" data-ajax="1" title="Shrink Items"  data-width="300" data-href="{{../controller_base_url}}shrink_item/{{supply_shelves_supply_purchases_id}}"><i class="icon-download-alt"> Shrink Items</i></button>
+					</div>
+				</td>
+			</tr>
+			{{/iter}}
+		</tbody>
+	</table>
+	{{else}}
+	<p>No records found.</p>
+	{{/if}}
+</div>

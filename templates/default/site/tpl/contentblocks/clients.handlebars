@@ -1,0 +1,39 @@
+<div class="row-fluid">
+<div class="button-bar">
+		<span class="buttons">
+		<div class="btn-group">
+				<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">
+					<i class="icon-file"></i> Reports <i class="icon-angle-down icon-on-right"></i>
+				</button>
+				{{#user_can CLIENTS_VIEW}}
+				<ul class="dropdown-menu pull-right dropdown-caret">
+					<li>
+						<a class="ajax-modal" data-href="{{controller_base_url}}client_address_book" target="_blank" >Client Address Book</a>
+					</li>
+				</ul>
+				{{/user_can}}
+			</div>
+		{{#user_can CLIENTS_EDIT}}<a class="btn btn-mini btn-primary ajax-modal" data-width="720" data-href="{{controller_base_url}}edit" href="#add-supply"><i class="icon-plus"></i> New Client</a>{{/user_can}}
+
+		</span>
+	</div>
+{{#each content_data}}
+		<div class="vcard-separator">
+			<span class="group-heading">{{group}}</span>
+		</div>
+		{{#each clients}}
+	<div class="well well-small vcard">
+		<img src="{{#if avatar}}{{../../path}}/{{avatar}}{{else}}{{../../path}}/default.png{{/if}}" class="img-polaroid" />
+		<span class="title">
+
+		<a class="ajax-modal" data-width="720" data-href="{{../../controller_base_url}}edit/{{client_id}}" href="#add-supply">{{client_name}}</a></span>
+		<span class="position">{{client_contact_person}}</span>
+		{{#user_can CLIENTS_VIEW}}
+		<a class="ajax-modal" data-width="480" data-href="{{../../controller_base_url}}more/{{client_id}}" href="#add-supply">Details</a></span>
+		{{/user_can}}
+		{{#user_can CLIENTS_EDIT}}<a class="text-error confirm-action" title="Delete" data-toggle="tooltip" data-href="{{../../controller_base_url}}delete/{{client_id}}" data-ajax="0" data-msg="Are you sure you want to delete {{client_name}}?">Delete</a>{{/user_can}}
+	</div>
+	{{/each}}
+{{/each}}
+
+</div>

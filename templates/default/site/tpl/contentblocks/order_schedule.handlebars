@@ -1,0 +1,84 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>View Schedule</h3>
+</div>
+<div class="modal-body" id ="create_order_frm" style='position: relative;'>
+	<div class='gantt'></div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" data-dismiss="modal" class="btn btn-primary btn-small submit-form" data-form="modal-form-add">Save changes</button>
+</div>
+<script>
+	(function($) {
+
+			"use strict";
+
+			$(".gantt").gantt({
+				source: [{
+					name: "Cutting",
+					desc: "8:00am - 12:00am",
+					values: [{
+						from: "/Date(1320192000000)/",
+						to: "/Date(1322401600000)/",
+						label: "Cutting", 
+						customClass: "ganttRed"
+					}]
+
+				},{
+					name: "Wrapping",
+					desc: "12:00am - 12:30pm",
+					values: [{
+						from: "/Date(1323802400000)/",
+						to: "/Date(1325685200000)/",
+						label: "Wrapping", 
+						customClass: "ganttGreen"
+					}]
+				},{
+					name: "Delivery",
+					desc: "1:00pm - 3:00pm",
+					values: [{
+						from: "/Date(1326785200000)/",
+						to: "/Date(1325785200000)/",
+						label: "delivery", 
+						customClass: "ganttGreen"
+					}]
+					},{
+					name: "Delivery",
+					desc: "1:00pm - 3:00pm",
+					values: [{
+						from: "/Date(1326785200000)/",
+						to: "/Date(1325785200000)/",
+						label: "delivery", 
+						customClass: "ganttGreen"
+					}]
+				}],
+				navigate: "scroll",
+				maxScale: "hours",
+				itemsPerPage: 10,
+				onItemClick: function(data) {
+					//alert("Item clicked - show some details");
+				},
+				onAddClick: function(dt, rowId) {
+					//alert("Empty space clicked - add an item!");
+				},
+				onRender: function() {
+					if (window.console && typeof console.log === "function") {
+						console.log("chart rendered");
+					}
+				}
+			});
+
+			/*
+			$(".gantt").popover({
+							selector: ".bar",
+							title: "I'm a popover",
+							content: "And I'm the content of said popover.",
+							trigger: "hover"
+						});*/
+			
+
+			prettyPrint();
+
+		})(jQuery);
+</script>

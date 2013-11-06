@@ -1,0 +1,79 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>{{#if addform}}Add New{{else}}Edit{{/if}} Shelve</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{#unless addform}}{{>../blocks/message}}{{/unless}}		
+			{{#with content_data}}
+				<form action="{{../ajax_save_url}}" method="post" class="form-horizontal" id="modal-form{{#if ../addform}}-add{{/if}}">
+					<div class="control-group {{#key_in_array ../errors "supply_shelf_name"}}error{{/key_in_array}}">
+						<label class="control-label" for="supply_shelf_name">Shelf name</label>
+						<div class="controls">
+							<input type="text" id="supply_shelf_name" name="supply_shelf_name" value="{{supply_shelf_name}}">
+							<span class="help-inline error">{{#get_first_error ../errors "supply_shelf_name"}}</span>
+						</div>
+					</div>
+					<div class="control-group {{#key_in_array ../errors "supply_type_id"}}error{{/key_in_array}}">
+						<label class="control-label" for="supply_type_id">Location</label>
+						<div class="controls">
+							<select name="supply_location_id">
+								{{#each ../locations}}
+								<option value="{{supply_location_id}}" {{#equals_to supply_location_id	 ../supply_location_id}}selected="selected"{{/equals_to}}>{{supply_location_name}}</option>
+								{{/each}}
+							</select>
+							<span class="help-inline error">{{#get_first_error ../errors "supply_location_id"}}</span>
+						</div>
+					</div>
+					<div class="control-group {{#key_in_array ../errors "supply_shelf_type_id"}}error{{/key_in_array}}">
+						<label class="control-label" for="supply_shelf_type_id">Shelf Type</label>
+						<div class="controls">
+							<select name="supply_shelf_type_id">
+								{{#each ../shelf_types}}
+								<option value="{{supply_shelf_type_id}}" {{#equals_to supply_shelf_type_id ../supply_shelf_type_id}}selected="selected"{{/equals_to}}>{{supply_shelf_type_name}}</option>
+								{{/each}}
+							</select>
+							<span class="help-inline error">{{#get_first_error ../errors "supply_shelf_type_id"}}</span>
+						</div>
+					</div>
+					<div class="control-group {{#key_in_array ../errors "shelf_target_level"}}error{{/key_in_array}}">
+						<label class="control-label" for="shelf_target_level">Target Level</label>
+						<div class="controls">
+							<input type="text" id="shelf_target_level" name="shelf_target_level" value="{{shelf_target_level}}">
+							<span class="help-inline error">{{#get_first_error ../errors "shelf_target_level"}}</span>
+						</div>
+					</div>
+					<div class="control-group {{#key_in_array ../errors "shelf_reorder_level"}}error{{/key_in_array}}">
+						<label class="control-label" for="shelf_reorder_level">Reorder Level</label>
+						<div class="controls">
+							<input type="text" id="shelf_reorder_level" name="shelf_reorder_level" value="{{shelf_reorder_level}}">
+							<span class="help-inline error">{{#get_first_error ../errors "shelf_reorder_level"}}</span>
+						</div>
+					</div>
+					<div class="control-group {{#key_in_array ../errors "shelf_restock_location"}}error{{/key_in_array}}">
+						<label class="control-label" for="shelf_restock_location">Restock Location</label>
+						<div class="controls">
+							<input type="text" id="shelf_restock_location" name="shelf_restock_location" value="{{shelf_restock_location}}">
+							<span class="help-inline error">{{#get_first_error ../errors "shelf_restock_location"}}</span>
+
+						</div>
+					</div>
+					<div class="control-group {{#key_in_array ../errors "shelf_lead_time"}}error{{/key_in_array}}">
+						<label class="control-label" for="shelf_reorder_level">Lead Time (Minutes)</label>
+						<div class="controls">
+							<input type="text" id="shelf_lead_time" name="shelf_lead_time" value="{{shelf_lead_time}}">
+							<span class="help-inline error">{{#get_first_error ../errors "shelf_lead_time"}}</span>
+
+						</div>
+					</div>
+					<input type="hidden" value="{{supply_shelf_id}}" name="id" />
+					<input type="hidden" value={{#if ../save_failed}}"0"{{/if}}{{#unless ../save_failed}}"1"{{/unless}} name="saved" />
+					<input type="hidden" value={{#if ../added_record}}"1"{{/if}}{{#unless ../added_record}}"0"{{/unless}} name="new_row" />
+				</form>
+			{{/with}}					
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" {{#if added_record}}data-new-row="1"{{/if}} data-form="modal-form{{#if addform}}-add{{/if}}" data-row-data="supplyshelvesTableRowData">Save changes</button>
+</div>

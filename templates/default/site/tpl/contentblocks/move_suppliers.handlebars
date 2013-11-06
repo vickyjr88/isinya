@@ -1,0 +1,28 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+		&times;
+	</button>
+	<h3>Shrink Item</h3>
+</div>
+<div class="modal-body">
+	<form action="{{controller_base_url}}shrink_item/" method="post" class="form-horizontal" id="modal-form-add">
+		<input type="hidden" value="{{content_data.id}}" name="shrink_purchases_id" id="shrink_purchases_id" />
+		<div class="control-group {{#key_in_array errors "supply_purchased_quantity"}}error{{/key_in_array}}">
+			<label class="control-label" for="squantinty">Shrink Quantity</label>
+			<div class="controls">
+				<input type="text" id="quantinty" name="quantity" placeholder="" value="{{quantinty}}">
+				<span class="help-inline error">{{#get_first_error errors "quantity"}}</span>
+			</div>
+		</div>
+		<input type="hidden" value={{#if ../save_failed}}"0"{{/if}}{{#unless ../save_failed}}"1"{{/unless}} name="saved" />
+		<input type="hidden" value={{#if ../added_record}}"1"{{/if}}{{#unless ../added_record}}"0"{{/unless}} name="new_row" />
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">
+		Close
+	</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form-add" data-row-data="supplyTableRowData">
+		Save changes
+	</button>
+</div>

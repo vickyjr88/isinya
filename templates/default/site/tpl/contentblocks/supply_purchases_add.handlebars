@@ -1,0 +1,160 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>Add Supply Purchase</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{>../blocks/message}}
+		<form action="{{controller_base_url}}add_purchase/{{supply_id}}" method="post" class="form-horizontal" id="supply-purchase-add">
+			<div>
+				<input type="hidden" value="{{supply_id}}" name="supply_id" />
+				<div class="control-group {{#key_in_array errors "package_type_id"}}error{{/key_in_array}}">
+					<label class="control-label" for="package_type_id">Package Type</label>
+					<div class="controls">
+						<select name="package_type_id">
+							{{#each package_types}}
+								<option value="{{package_type_id}}" {{#equals_to package_type_id ../package_type_id}}selected="selected"{{/equals_to}}>{{package_type_name}}</option>
+							{{/each}}
+						</select>
+						<span class="help-inline error">{{#get_first_error errors "package_type_id"}}</span>
+					</div>
+				</div>
+				<div class="control-group {{#key_in_array errors "supplier_id"}}error{{/key_in_array}}">
+					<label class="control-label" for="supplier_id">Supplier</label>
+					<div class="controls">
+						<select name="supplier_id">
+							{{#each suppliers}}
+								<option value="{{supplier_id}}" {{#equals_to supplier_id ../supplier_id}}selected="selected"{{/equals_to}}>{{supplier_name}}</option>
+							{{/each}}
+						</select>
+						<span class="help-inline error">{{#get_first_error errors "supplier_id"}}</span>
+					</div>
+				</div>
+				<div class="control-group {{#key_in_array errors "supply_purchase_date"}}error{{/key_in_array}}">
+					<label class="control-label" for="supply_purchase_date">Purchase Date</label>
+					<div class="controls">
+						<input class="date-picker" data-date-format="dd-mm-yyyy" type="text" id="supply_purchase_date" name="supply_purchase_date" placeholder="" value="{{supply_purchase_date}}">
+						<span class="help-inline error">{{#get_first_error errors "supply_purchase_date"}}</span>
+					</div>
+				</div>
+				<div class="control-group {{#key_in_array errors "supply_purchased_quantity"}}error{{/key_in_array}}">
+					<label class="control-label" for="supply_purchased_quantity">Purchase Quantity</label>
+					<div class="controls">
+						<input type="text" id="supply_purchased_quantity" name="supply_purchased_quantity" placeholder="" value="{{supply_purchased_quantity}}">
+						<span class="help-inline error">{{#get_first_error errors "supply_purchased_quantity"}}</span>
+					</div>
+				</div>
+				<div class="control-group {{#key_in_array errors "quantity_per_package"}}error{{/key_in_array}}">
+					<label class="control-label" for="quantity_per_package">Quantity Per Package</label>
+					<div class="controls">
+						<input type="text" id="quantity_per_package" name="quantity_per_package" placeholder="" value="{{quantity_per_package}}">
+						<span class="help-inline error">{{#get_first_error errors "quantity_per_package"}}</span>
+					</div>
+				</div>
+				<div class="control-group {{#key_in_array errors "cost_per_package"}}error{{/key_in_array}}">
+					<label class="control-label" for="cost_per_package">Cost Per Package</label>
+					<div class="controls">
+						<input type="text" id="cost_per_package" name="cost_per_package" placeholder="" value="{{cost_per_package}}">
+						<span class="help-inline error">{{#get_first_error errors "cost_per_package"}}</span>
+					</div>
+				</div>
+				<div class="control-group {{#key_in_array errors "cost_per_unit"}}error{{/key_in_array}}">
+					<label class="control-label" for="cost_per_unit">Cost Per Unit</label>
+					<div class="controls">
+						<input type="text" id="cost_per_unit" name="cost_per_unit" placeholder="" value="{{cost_per_unit}}">
+						<span class="help-inline error">{{#get_first_error errors "cost_per_unit"}}</span>
+					</div>
+				</div>
+
+				<div class="control-group {{#key_in_array errors "supply_description"}}error{{/key_in_array}}">
+					<label class="control-label" for="supply_description">Description</label>
+					<div class="controls">
+						<textarea name="supply_description" style="width:360px;height:130px" class="span6">{{supply_description}}</textarea>
+						<span class="help-inline error">{{#get_first_error errors "supply_description"}}</span>
+					</div>
+				</div>
+
+				<!-- Supply/Item Locations -->
+				<h5><strong>Shelf Locations</strong></h5>
+				<div style="float:left;width:170px">Location</div>
+				<div style="float:left">Count</div>
+				<br clear="all" />
+				[<a onclick="add_location_input()"> add </a>]
+				<div id="supply_locations">
+
+
+					{{#iter shelf_locations}}
+						<select id="location_{{loc_index}}" name="location_{{loc_index}}" style="float:left;width:160px;margin-right:10px">
+							{{#iter ../shelves}}
+								<option value="{{supply_shelf_id}}" {{#equals_to supply_shelf_id ../location}}selected="selected"{{/equals_to}}>{{supply_shelf_name}}, {{supply_location_name}}</option>
+							{{/iter}}
+						</select>
+						<input id="count_{{loc_index}}" name="count_{{loc_index}}" value="{{count}}" type="text" style="float:left;width:80px" />
+						<br clear="all" />
+						<br clear="all" />
+					{{/iter}}
+
+				</div>
+
+				<script type="text/javascript">
+					$(function() {
+						$('#supply_purchase_date').datepicker({
+							format: 'yyyy-mm-dd'
+						});
+					});
+					var location_count = {{locations_count}};
+					function add_location_input() {
+						location_count += 1;
+						location_html = '<select id="location_' + location_count + '" name="location_' + location_count + '" style="float:left;width:160px;margin-right:10px">' +
+								'{{#iter shelves}}<option value="{{supply_shelf_id}}">{{supply_shelf_name}}, {{supply_location_name}}</option>{{/iter}}' +
+								'</select>';
+						location_html += '<input id="count_' + location_count + '" name="count_' + location_count + '" type="text" style="float:left;width:80px" />';
+						location_html += '<br clear="all" /><br clear="all" />';
+						$('#supply_locations').append(location_html);
+					}
+
+					function val_location_counts() {
+						var total_count = 0;
+						var purchase_count = parseInt($('#supply_purchased_quantity').val());
+						if (isNaN(purchase_count)) {
+							alert('Please specify a valid purchase quantity');
+							return false;
+						}
+						for(var i = 1; i <= location_count; i++) {
+							if(isNaN($('#count_' + i).val()) || $('#count_' + i).val() == '') {
+								alert('Please specify a valid amount for shelf-allocation number ' + i);
+								return;
+							}
+							total_count = total_count + parseInt($('#count_' + i).val());
+						}
+
+						if (total_count != purchase_count) {
+							if (isNaN(purchase_count) || purchase_count == '') purchase_count = 0;
+							var diff = purchase_count - total_count;
+							var str = '';
+							if(diff > 0 && !isNaN(purchase_count) && purchase_count != '') {
+								str = 'Your total shelf-allocations exceed purchases by ' + diff + ' units';
+							} else if (diff < 0 && !isNaN(purchase_count) && purchase_count != '') {
+								str = 'Your purchase-count exceeds shelf-allocations by ' + diff + ' units';
+							}
+							alert("Please confirm your shelf-locations for this purchase. " + str);
+							return false;
+						} else if (total_count == 0) {
+							alert("Please specify one or more shelf-locations for this purchase");
+							return false;
+						}
+						return true;
+					}
+				</script>
+
+			</div>
+			<input type="hidden" value="{{supply_id}}" name="id" />
+			<input type="hidden" value={{#if ../save_failed}}"0"{{/if}}{{#unless ../save_failed}}"1"{{/unless}} name="saved" />
+			<input type="hidden" value={{#if ../added_record}}"1"{{/if}}{{#unless ../added_record}}"0"{{/unless}} name="new_row" />
+		</form>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" data-validation="val_location_counts" data-form="supply-purchase-add" data-row-data="supplyTableRowData">Save changes</button>
+</div>

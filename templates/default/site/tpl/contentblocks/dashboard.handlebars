@@ -1,0 +1,533 @@
+{{#if localdev}}
+<div class="row-fluid">
+	<div class="span12">
+		<!--PAGE CONTENT BEGINS-->
+		<div id="user-profile-1" class="user-profile row-fluid">
+			<div class="span3 center">
+				<div>
+					<span class="profile-picture">
+						<img id="avatar" class="editable" alt="Alex's Avatar" src="assets/avatars/profile-pic.jpg" />
+					</span>
+
+					<div class="space-4"></div>
+
+					<div class="width-80 label label-info label-large arrowed-in arrowed-in-right">
+						<div class="inline position-relative">
+							<a href="profile.html#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+								<i class="icon-circle light-green middle"></i>
+								&nbsp;
+								<span class="white middle bigger-120">Alex M. Doe</span>
+							</a>
+
+							<ul class="align-left dropdown-menu dropdown-caret dropdown-lighter">
+								<li class="nav-header"> Change Status </li>
+
+								<li>
+									<a href="profile.html#">
+										<i class="icon-circle green"></i>
+										&nbsp;
+										<span class="green">Available</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="profile.html#">
+										<i class="icon-circle red"></i>
+										&nbsp;
+										<span class="red">Busy</span>
+									</a>
+								</li>
+
+								<li>
+									<a href="profile.html#">
+										<i class="icon-circle grey"></i>
+										&nbsp;
+										<span class="grey">Invisible</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="space-6"></div>
+
+				<div class="profile-contact-info">
+					<div class="profile-contact-links align-left">
+						<a class="btn btn-link" href="profile.html#">
+							<i class="icon-plus-sign bigger-120 green"></i>
+							Add as a friend
+						</a>
+
+						<a class="btn btn-link" href="profile.html#">
+							<i class="icon-envelope bigger-120 pink"></i>
+							Send a message
+						</a>
+
+						<a class="btn btn-link" href="profile.html#">
+							<i class="icon-globe bigger-125 blue"></i>
+							www.alexdoe.com
+						</a>
+					</div>
+
+					<div class="space-6"></div>
+
+					<div class="profile-social-links center">
+						<a href="profile.html#" class="tooltip-info tooltip" title="" data-original-title="Visit my Facebook">
+							<i class="middle icon-facebook-sign icon-2x blue"></i>
+						</a>
+
+						<a href="profile.html#" class="tooltip-info tooltip" title="" data-original-title="Visit my Twitter">
+							<i class="middle icon-twitter-sign icon-2x light-blue"></i>
+						</a>
+
+						<a href="profile.html#" class="tooltip-error tooltip" title="" data-original-title="Visit my Pinterest">
+							<i class="middle icon-pinterest-sign icon-2x red"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="hr hr12 dotted"></div>
+
+				<div class="clearfix">
+					<div class="grid2">
+						<span class="bigger-175 blue">25</span>
+
+						<br />
+						Followers
+					</div>
+
+					<div class="grid2">
+						<span class="bigger-175 blue">12</span>
+
+						<br />
+						Following
+					</div>
+				</div>
+
+				<div class="hr hr16 dotted"></div>
+			</div>
+
+			<div class="span9">
+				<div class="center">
+					<span class="btn btn-app btn-small btn-light no-hover">
+						<span class="bigger-150 blue"> 1,411 </span>
+
+						<br />
+						<span class="smaller-90"> Views </span>
+					</span>
+
+					<span class="btn btn-app btn-small btn-yellow no-hover">
+						<span class="bigger-175"> 32 </span>
+
+						<br />
+						<span class="smaller-90"> Followers </span>
+					</span>
+
+					<span class="btn btn-app btn-small btn-pink no-hover">
+						<span class="bigger-175"> 4 </span>
+
+						<br />
+						<span class="smaller-90"> Projects </span>
+					</span>
+
+					<span class="btn btn-app btn-small btn-grey no-hover">
+						<span class="bigger-175"> 23 </span>
+
+						<br />
+						<span class="smaller-90"> Reviews </span>
+					</span>
+
+					<span class="btn btn-app btn-small btn-success no-hover">
+						<span class="bigger-175"> 7 </span>
+
+						<br />
+						<span class="smaller-90"> Albums </span>
+					</span>
+
+					<span class="btn btn-app btn-small btn-primary no-hover">
+						<span class="bigger-175"> 55 </span>
+
+						<br />
+						<span class="smaller-90"> Contacts </span>
+					</span>
+				</div>
+
+				<div class="space-12"></div>
+
+				<div class="profile-user-info profile-user-info-striped">
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Username </div>
+
+						<div class="profile-info-value">
+							<span class="editable editable-field" id="username">alexdoe</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Location </div>
+
+						<div class="profile-info-value">
+							<i class="icon-map-marker light-orange bigger-110"></i>
+							<span class="editable editable-field-chained-select" data-child="#city" id="country">Netherlands</span>
+							<span class="editable editable-field-chained-select" data-parent="#country" id="city">Amsterdam</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Age </div>
+
+						<div class="profile-info-value">
+							<span class="editable editable-field-spinner" data-spinner-min="30" data-spinner-max="40" data-prefix="prefix" data-suffix="suffix" id="age">38</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Joined </div>
+
+						<div class="profile-info-value">
+							<span class="editable editable-field-date-time" id="signup">20/06/2010</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Last Online Period </div>
+
+						<div class="profile-info-value">
+							<span class="editable editable-field-date-time" id="online-from">9:00 am to </span>
+							<span class="editable editable-field-date-time" id="online-to">4:00 pm</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Last Online Time </div>
+
+						<div class="profile-info-value">
+							<span class="editable editable-field-time" id="online-time" data-value="09:00" data-format="HH:mm" data-display-format="HH:mm" data-name="time-field" data-pk="1">09:00 am</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Last Online </div>
+
+						<div class="profile-info-value">
+							<span class="editable editable-field-slider" data-slider-min="30" data-slider-max="40" id="login">3 hours ago</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Color </div>
+
+						<div class="profile-info-value">
+							<span class="editable editable-field-ajax-select" id="color-1" data-name="color" data-edit-mode="inline" data-pk="1" data-src="/DataSearch" data-url="/save_url" data-value="5" data-option="Orange" data-placeholder="Select Color">Orange</span>
+						</div>
+					</div>
+
+					<div class="profile-info-row">
+						<div class="profile-info-name"> Color (multi) </div>
+
+						<div class="profile-info-value">
+							<span class="editable editable-field-ajax-multi-select" id="color-2" data-name="color" data-edit-mode="inline" data-pk="1" data-src="/DataSearch" data-url="/save_url" data-value="4:Purple,5:Orange" data-placeholder="Select Color">options</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="space-12"></div>
+
+			</div>
+		</div>
+
+		<div class="row-fluid">
+			<div class="span6">
+				<div class="widget-box transparent">
+					<div class="widget-header widget-header-small">
+						<h4 class="smaller">
+							<i class="icon-check bigger-110"></i>
+							My Tasks
+						</h4>
+					</div>
+
+					<div class="widget-body">
+						<div class="widget-main">
+							<p>
+								My job is mostly lorem ipsuming and dolor sit ameting as long as consectetur adipiscing elit.
+							</p>
+							<p>
+								Sometimes quisque commodo massa gets in the way and sed ipsum porttitor facilisis.
+							</p>
+							<p>
+								The best thing about my job is that vestibulum id ligula porta felis euismod and nullam quis risus eget urna mollis ornare.
+							</p>
+							<p>
+								Thanks for visiting my profile.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="span6">
+				<div class="widget-box transparent">
+					<div class="widget-header widget-header-small header-color-blue2">
+						<h4 class="smaller">
+							<i class="icon-lightbulb bigger-120"></i>
+							Stats
+						</h4>
+					</div>
+
+					<div class="widget-body">
+						<div class="widget-main padding-16">
+							<div class="row-fluid">
+								<div class="grid3 center">
+									<div class="easy-pie-chart percentage" data-percent="45" data-color="#CA5952">
+										<span class="percent">45</span>
+										%
+									</div>
+
+									<div class="space-2"></div>
+									Graphic Design
+								</div>
+
+								<div class="grid3 center">
+									<div class="center easy-pie-chart percentage" data-percent="90" data-color="#59A84B">
+										<span class="percent">90</span>
+										%
+									</div>
+
+									<div class="space-2"></div>
+									HTML5 & CSS3
+								</div>
+
+								<div class="grid3 center">
+									<div class="center easy-pie-chart percentage" data-percent="80" data-color="#9585BF">
+										<span class="percent">80</span>
+										%
+									</div>
+
+									<div class="space-2"></div>
+									Javascript/jQuery
+								</div>
+							</div>
+
+							<div class="hr hr-16"></div>
+
+							<div class="profile-skills">
+								<div class="progress">
+									<div class="bar" style="width:80%">
+										<span class="pull-left">HTML5 & CSS3</span>
+										<span class="pull-right">80%</span>
+									</div>
+								</div>
+
+								<div class="progress progress-success">
+									<div class="bar" style="width:72%">
+										<span class="pull-left">Javascript & jQuery</span>
+
+										<span class="pull-right">72%</span>
+									</div>
+								</div>
+
+								<div class="progress progress-purple">
+									<div class="bar" style="width:70%">
+										<span class="pull-left">PHP & MySQL</span>
+
+										<span class="pull-right">70%</span>
+									</div>
+								</div>
+
+								<div class="progress progress-warning">
+									<div class="bar" style="width:50%">
+										<span class="pull-left">Wordpress</span>
+
+										<span class="pull-right">50%</span>
+									</div>
+								</div>
+
+								<div class="progress progress-danger">
+									<div class="bar" style="width:35%">
+										<span class="pull-left">Photoshop</span>
+
+										<span class="pull-right">35%</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--PAGE CONTENT ENDS-->
+	</div><!--/.span-->
+	<script type="text/javascript">
+		$(function() {
+			var countries = [];
+		    $.each({ "CA": "Canada", "IN": "India", "NL": "Netherlands", "TR": "Turkey", "US": "United States"}, function(k, v) {
+		        countries.push({id: k, text: v});
+		    });
+
+			var cities = [];
+			cities["CA"] = [];
+			$.each(["Toronto", "Ottawa", "Calgary", "Vancouver"] , function(k, v){
+				cities["CA"].push({id: v, text: v});
+			});
+			cities["IN"] = [];
+			$.each(["Delhi", "Mumbai", "Bangalore"] , function(k, v){
+				cities["IN"].push({id: v, text: v});
+			});
+			cities["NL"] = [];
+			$.each(["Amsterdam", "Rotterdam", "The Hague"] , function(k, v){
+				cities["NL"].push({id: v, text: v});
+			});
+			cities["TR"] = [];
+			$.each(["Ankara", "Istanbul", "Izmir"] , function(k, v){
+				cities["TR"].push({id: v, text: v});
+			});
+			cities["US"] = [];
+			$.each(["New York", "Miami", "Los Angeles", "Chicago", "Wysconsin"] , function(k, v){
+				cities["US"].push({id: v, text: v});
+			});
+
+			var currentValue = "NL";
+		    $('#country').editable({
+				type: 'select2',
+				value : 'NL',
+		        source: countries,
+				success: function(response, newValue) {
+					if(currentValue == newValue) return;
+					currentValue = newValue;
+
+					var source = (!newValue || newValue == "") ? [] : cities[newValue];
+					$('#city').editable('destroy').editable({
+						type: 'select2',
+						source: source
+					}).editable('setValue', null);
+				}
+		    });
+
+			$('#city').editable({
+				type: 'select2',
+				value : 'Amsterdam',
+		        source: cities[currentValue]
+		    });
+
+			// *** editable avatar *** //
+			try {//ie8 throws some harmless exception, so let's catch it
+
+				//it seems that editable plugin calls appendChild, and as Image doesn't have it, it causes errors on IE at unpredicted points
+				//so let's have a fake appendChild for it!
+				if( /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase()) ) Image.prototype.appendChild = function(el){}
+
+				var last_gritter
+				$('#avatar').editable({
+					type: 'image',
+					name: 'avatar',
+					value: null,
+					image: {
+						//specify ace file input plugin's options here
+						btn_choose: 'Change Avatar',
+						droppable: true,
+						/**
+						//this will override the default before_change that only accepts image files
+						before_change: function(files, dropped) {
+							return true;
+						},
+						*/
+
+						//and a few extra ones here
+						name: 'avatar',//put the field name here as well, will be used inside the custom plugin
+						max_size: 110000,//~100Kb
+						on_error : function(code) {//on_error function will be called when the selected file has a problem
+							if(last_gritter) $.gritter.remove(last_gritter);
+							if(code == 1) {//file format error
+								last_gritter = $.gritter.add({
+									title: 'File is not an image!',
+									text: 'Please choose a jpg|gif|png image!',
+									class_name: 'gritter-error gritter-center'
+								});
+							} else if(code == 2) {//file size rror
+								last_gritter = $.gritter.add({
+									title: 'File too big!',
+									text: 'Image size should not exceed 100Kb!',
+									class_name: 'gritter-error gritter-center'
+								});
+							}
+							else {//other error
+							}
+						},
+						on_success : function() {
+							$.gritter.removeAll();
+						}
+					},
+				    url: function(params) {
+						// ***UPDATE AVATAR HERE*** //
+						//You can replace the contents of this function with examples/profile-avatar-update.js for actual upload
+
+
+						var deferred = new $.Deferred
+
+						//if value is empty, means no valid files were selected
+						//but it may still be submitted by the plugin, because "" (empty string) is different from previous non-empty value whatever it was
+						//so we return just here to prevent problems
+						var value = $('#avatar').next().find('input[type=hidden]:eq(0)').val();
+						if(!value || value.length == 0) {
+							deferred.resolve();
+							return deferred.promise();
+						}
+
+
+						//dummy upload
+						setTimeout(function(){
+							if("FileReader" in window) {
+								//for browsers that have a thumbnail of selected image
+								var thumb = $('#avatar').next().find('img').data('thumb');
+								if(thumb) $('#avatar').get(0).src = thumb;
+							}
+
+							deferred.resolve({'status':'OK'});
+
+							if(last_gritter) $.gritter.remove(last_gritter);
+							last_gritter = $.gritter.add({
+								title: 'Avatar Updated!',
+								text: 'Uploading to server can be easily implemented. A working example is included with the template.',
+								class_name: 'gritter-info gritter-center'
+							});
+
+						 } , parseInt(Math.random() * 800 + 800))
+
+						return deferred.promise();
+					},
+
+					success: function(response, newValue) {
+					}
+				})
+			}catch(e) {}
+
+
+			//////////////////////////////
+			$('#profile-feed-1').slimScroll({
+			height: '250px',
+			alwaysVisible : true
+			});
+
+			//$('.profile-social-links > a').tooltip();
+
+			$('.easy-pie-chart.percentage').each(function(){
+			var barColor = $(this).data('color') || '#555';
+			var trackColor = '#E2E2E2';
+			var size = parseInt($(this).data('size')) || 72;
+			$(this).easyPieChart({
+				barColor: barColor,
+				trackColor: trackColor,
+				scaleColor: false,
+				lineCap: 'butt',
+				lineWidth: parseInt(size/10),
+				animate:false,
+				size: size
+			}).css('color', barColor);
+			});
+			$('.input-mask-phone').mask('(999) 999-9999');
+		});
+	</script>
+</div><!--/.row-fluid-->
+{{/if}}

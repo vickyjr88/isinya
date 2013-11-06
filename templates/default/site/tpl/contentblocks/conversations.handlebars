@@ -1,0 +1,51 @@
+<div id="ajax-message"></div>
+{{#if no_messages}}
+<div class="row-fluid">
+	<span class="alert alert-warning" ><strong>There are no messages in the inbox</strong></alert>
+</div>
+{{else}}
+<div class="span4">
+	<div id="contact-list">
+		<div class="row-fluid">
+			<div class="control-group">
+				<div class="controls">
+					<span class="input-icon input-icon-right">
+						<input class="search" type="text" id="inbox-search" placeholder="Search">
+						<i class="icon-search"></i> </span>
+
+				</div>
+			</div>
+		</div>
+		<div class="scroll row-fluid" style="overflow: hidden;  height: 500px;">
+			<ul   class="unstyled contacts list" >
+				{{#each contacts}}
+				<li class="contact-list-item {{#equals_to ../conversation_info.id user_info.user_id}}active{{/equals_to}}">
+					<a class="name ajax-response" style="text-decoration: none" data-callback="toggleActiveContact" data-response=".conversation-body" data-href="{{../system_functions_url}}get_conversation/{{user_info.user_id}}">
+						<div class="row-fluid">
+							<div class="span2">
+								<img src="{{component_base_url}}assets/avatars/{{#if user_info.avatar}}{{user_info.avatar}}{{else}}default.png{{/if}}" width="48" height="48" alt="avatar"/>
+							</div>
+							<div class="span8">
+								<div class="time pull-right" style="margin-right: -50px">
+									<small class="text-error">{{unread_messages}} Unread</small>
+									<i class="icon-time"></i><span class="green"> <small>{{#format_date latest_message.get_formatted_date "M d, h:i a"}}{{/format_date}}</small></span>
+								</div>
+								<span class="name">{{#if user_info.name}}{{user_info.name}}{{else}}{{user_info.username}}{{/if}}</span>
+								<p class="text">
+									{{latest_message.message}}																
+								</p>							
+							</div>
+						</div>
+					</a>
+				</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="span6">
+	<div class="conversation-body">
+		{{>contentblocks/conversation}}
+	</div>
+</div>
+{{/if}}

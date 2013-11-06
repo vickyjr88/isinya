@@ -1,0 +1,73 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>Inventory Pull {{supply_name}}</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{>../blocks/message}}
+		{{#if sssp_id}}
+			<form action="{{ajax_save_url}}" method="post" class="form-horizontal" id="modal-form-allocate-supply-from-shelf">
+		{{else}}
+			<form action="{{ajax_save_url}}" method="post" class="form-horizontal" id="modal-form-allocate-supply">
+		{{/if}}
+			<div class="control-group {{#key_in_array ../errors "recepient_type"}}error{{/key_in_array}}">
+				<label class="control-label" for="supply_type_id">Recepient Type</label>
+				<div class="controls">
+					<select id="recepient_type" name="recepient_type" class="input-large" rel="chained-list" data-chain="#recepient_id" data-href="{{controller_base_url}}allocate_recepient_list/">
+						<option value="">-- Choose One --</option>
+						<option value="client">Client</option>
+						<option value="personnel">Personnel</option>
+					</select>
+					<span class="help-inline error">{{#get_first_error ../errors "recepient_type"}}</span>
+				</div>
+			</div>
+			<div class="control-group {{#key_in_array ../errors "recepient_id"}}error{{/key_in_array}}">
+				<label class="control-label" for="supply_type_id">Recepient</label>
+				<div class="controls">
+					<select class="input-large" id="recepient_id" name="recepient_id" disabled="disabled">
+						<option value="">-- Choose One --</option>
+					</select>
+					<span class="help-inline error">{{#get_first_error ../errors "recepient_id"}}</span>
+				</div>
+			</div>
+			<div class="control-group {{#key_in_array errors "allocation_description"}}error{{/key_in_array}}">
+				<label class="control-label" for="allocation_description">Comment</label>
+				<div class="controls">
+					<textarea name="allocation_description" id="allocation_description"></textarea>
+				</div>
+			</div>
+
+			<table class="table table-striped table-bordered table-hover data-table">
+				<thead>
+					<tr>
+						<th>Shelf</th>
+						<th>Quantity on Hand</th>
+						<th>Allocation</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#iter content_data}}
+					<tr>
+						<td>{{supply_shelf_name}}, {{supply_location_name}}</td>
+						<td>{{supply_qty_on_hand}}</td>
+						<td>
+							<input name="quantity[{{supply_shelves_supply_purchases_id}}]" class="input-mini validate-number" type="text" max="{{supply_current_count}}" min="0" value="0" />
+						</td>
+					</tr>
+					{{/iter}}
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+<div class="modal-footer">
+	{{#if trans_id}}
+		<button id="pull-sheet-btn" class="btn btn-info btn-small pull-left child-modal" title="Pull Sheet" data-width="500" data-href="{{controller_base_url}}transaction/{{trans_id}}"><i class="icon-file">Pull Sheet</i></button>
+	{{/if}}
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	{{#if sssp_id}}
+		<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form-allocate-supply-from-shelf">Save changes</button>
+	{{else}}
+		<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form-allocate-supply">Save changes</button>
+	{{/if}}
+</div>

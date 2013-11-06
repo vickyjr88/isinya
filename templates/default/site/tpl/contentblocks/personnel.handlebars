@@ -1,0 +1,51 @@
+<div class="button-bar">
+	<span class="buttons">
+		<div class="btn-group">
+			<button data-toggle="dropdown" class="btn btn-primary btn-mini dropdown-toggle">
+				<i class="icon-file"></i> Reports <i class="icon-angle-down icon-on-right"></i>
+			</button>
+			{{#user_can PERSONNEL_VIEW}}
+			<ul class="dropdown-menu pull-right dropdown-caret">
+				<li>
+					<a class="ajax-modal" data-href="{{controller_base_url}}personnel_address_book" target="_blank" >Personnel Address Book</a>
+				</li>
+			</ul>
+			{{/user_can}}
+		</div> {{#user_can PERSONNEL_EDIT}}<a class="btn btn-mini btn-primary ajax-modal" data-width="900" href="#add-personnel" data-href="{{controller_base_url}}edit"> <i class="icon-plus"></i>&nbsp;Personnel </a>{{/user_can}} </span>
+</div>
+<div id="grid-view" class="row-fluid">
+	{{#each content_data}}
+	<div class="group" data-group = "{{group}}">
+		<div class="vcard-separator">
+			<span class="group-heading">{{group}}</span>
+		</div>
+		{{#each employees}}
+		<div class="well well-small vcard" id="list-item-{{personnel_id}}" data-id="{{personnel_id}}">
+			<img class="avatar" src="{{#if get_personnel_avatar}}{{../../component_base_url}}assets/avatars/{{get_personnel_avatar}}{{else}}{{../../component_base_url}}assets/avatars/default.png{{/if}}" class="img-polaroid" />
+			<span id="list-item-status-{{personnel_id}}" class='label{{#if personnel_active}} label-success{{else}} label-warning{{/if}}' style="float:right">{{#if personnel_active}}Active{{else}}Inactive{{/if}}</span>
+			<span class="title">{{personnel_name}}</span>
+			<span class="position">{{get_user_type}}</span>
+			{{#user_can PERSONNEL_EDIT}}<a class="ajax-modal" data-width="900"  data-href="{{../../controller_base_url}}edit/{{personnel_id}}">Edit</a>&nbsp;&nbsp;{{/user_can}}
+			{{#user_can PERSONNEL_EDIT}}<a class=" confirm-action text-error" title="Delete" data-toggle="tooltip" data-href="{{../../controller_base_url}}delete/{{personnel_id}}" data-ajax="0" data-msg="Are you sure you want to delete {{personnel_name}}?">Delete</a>{{/user_can}}
+		</div>
+		{{/each}}
+	</div>
+	{{/each}}
+</div>
+<script type="text/javascript">
+	window.personnelBlockData = function(formData, newBlock){
+		var id = formData['id']; var name = formData['personnel_name'];
+		var actions = null;
+		if (newBlock){
+			actions = '<a class="ajax-modal" data-width="900"  data-href="{{controller_base_url}}edit/' + id + '">Edit</a>&nbsp;&nbsp;';
+			actions +='<a class=" confirm-action" title="Delete" data-toggle="tooltip" data-href="{{controller_base_url}}delete/'+id+'" data-ajax="0" data-msg="Are you sure you want to delete '+name+'?">Delete</a>';
+		}
+		return [
+			formData['personnel_avatar'],
+			formData['personnel_active'],
+			formData['personnel_name'],
+			formData['personnel_title'] ,
+			actions,
+		];
+	}
+</script>

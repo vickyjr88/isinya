@@ -1,0 +1,22 @@
+<div class="row-fluid">
+	<button class="btn btn-mini btn-info child-modal" title="Details" data-width="500" data-href="{{controller_base_url}}uploadimages/{{supply_id}}">
+		<i class="icon-ellipsis-horizontal">Upload more images</i>
+	</button>
+	<ul class="ace-thumbnails">
+		{{../blocks/message}}
+		{{#each images_data}}
+		<li id="supply-thumb-{{supply_media_id}}">
+			 <img src="{{../{{path}}assets/supplies/{{filename}}" class="medium-thumbnail" alt="150x150">
+			
+			<div class="tools tools-bottom">
+				<a data-url="supplies/delete_image/{{supply_media_id}}" class=" confirm-delete" data-msg="Are you sure you want to delete this image"><i class="icon-remove red"></i></a>
+			</div>
+		</li>
+		{{/each}}
+		{{#if image_error}}
+		<p>
+			No images found
+		</p>
+		{{/if}}
+	</ul>	
+</div>

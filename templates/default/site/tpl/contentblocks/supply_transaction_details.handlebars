@@ -1,0 +1,107 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+{{#if content_data.purchase}}
+	<h3>Inventory Purchase</h3></div>
+	<div class="modal-body">
+		<div class="row-fluid">
+		{{#if content_data}}
+			<p><strong>ADD# {{content_data.transaction.fk_key_field_id}}</strong></p>
+			<p><strong>{{content_data.transaction.details}}</strong></p>
+			<p><strong>Personnel</strong>: {{content_data.personnel.personnel_name}} ({{content_data.user.email}})</p>
+			<p><strong>Supplier</strong>: {{content_data.supplier.supplier_name}}</p>
+			<p><strong>Supply Date</strong>: {{#format_date content_data.supplyPurchase.supply_purchase_date "Y-m-d H:i:s"}}</p>
+			<p><strong>Quantity</strong>: {{content_data.supplyPurchase.supply_purchased_quantity}}</p>
+		{{else}}
+			<p>Sorry, there was a problem retrieving the transaction details.</p>
+		{{/if}}
+		</div>
+	</div>
+{{/if}}
+
+{{#if content_data.move}}
+	<h3>Inventory Move</h3></div>
+	<div class="modal-body">
+		<div class="row-fluid">
+		{{#if content_data}}
+			<p><strong>MOVE# {{content_data.transaction.fk_key_field_id}}</strong></p>
+			<p><strong>{{content_data.transaction.details}}</strong></p>
+			<p><strong>Personnel</strong>: {{content_data.personnel.personnel_name}} ({{content_data.user.email}})</p>
+			<p><strong>Quantity</strong>: {{content_data.supplyMove.move_quantity}}</p>
+			<p><strong>Date</strong>: {{#format_date content_data.supplyMove.move_date "Y-m-d H:i:s"}}</p>
+		{{else}}
+			<p>Sorry, there was a problem retrieving the transaction details.</p>
+		{{/if}}
+		</div>
+	</div>
+{{/if}}
+
+{{#if content_data.shrink}}
+	<h3>Inventory Shrink</h3></div>
+	<div class="modal-body">
+		<div class="row-fluid">
+		{{#if content_data}}
+			<p><strong>SHRINK# {{content_data.transaction.fk_key_field_id}}</strong></p>
+			<p><strong>{{content_data.transaction.details}}</strong></p>
+			<p><strong>Personnel</strong>: {{content_data.personnel.personnel_name}} ({{content_data.user.email}})</p>
+			<p><strong>Quantity</strong>: {{content_data.supplyShrink.quantity}}</p>
+			<p><strong>Date</strong>: {{#format_date content_data.supplyShrink.shrink_date "Y-m-d H:i:s"}}</p>
+		{{else}}
+			<p>Sorry, there was a problem retrieving the transaction details.</p>
+		{{/if}}
+		</div>
+	</div>
+{{/if}}
+
+{{#if content_data.allocate}}
+	<h3>Inventory Pull</h3></div>
+	<div class="modal-body">
+		<div class="row-fluid">
+		{{#if content_data}}
+			<p><strong>PULL# {{content_data.transaction.fk_key_field_id}}</strong></p>
+			<p><strong>Personnel</strong>: {{content_data.personnel.personnel_name}} ({{content_data.user.email}})</p>
+			<p><strong>Quantity</strong>: {{content_data.allocation_sum}}</p>
+			<p><strong>Date</strong>: {{#format_date content_data.supplyAllocation.allocation_date "Y-m-d H:i:s"}}</p>
+
+			<br/><h5>Recipient Info</h5>
+			<p><strong>Recipient Type</strong>: {{content_data.allocation_recipient.recipient_type}}</p>
+			<p><strong>Name</strong>: {{content_data.allocation_recipient.name}}</p>
+			<p><strong>Telephone</strong>: {{content_data.allocation_recipient.telephone}}</p>
+			<p><strong>email</strong>: {{content_data.allocation_recipient.email}}</p>
+
+			<br/><h5>Item Allocations</h5>
+			<table class="table table-striped table-bordered table-hover data-table">
+				<thead>
+					<tr>
+						<th>Item Code</th>
+						<th>Item</th>
+						<th>Quantity</th>
+						<th>Location</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#iter content_data.allocations}}
+					<tr>
+						<td>{{product_code}}</td>
+						<td>{{supply_name}}</td>
+						<td>{{quantity}}</td>
+						<td>Shelf: {{supply_shelf_name}}, {{supply_location_name}}</td>
+					</tr>
+					{{/iter}}
+				</tbody>
+			</table>
+			<p><strong>Comment</strong>: {{content_data.transaction.details}}</p>
+		{{else}}
+			<p>Sorry, there was a problem retrieving the transaction details.</p>
+		{{/if}}
+		</div>
+	</div>
+{{/if}}
+
+<div class="modal-footer">
+{{#if content_data}}
+    <a type="button" href="{{controller_base_url}}supplier_export_excel_pull_transaction_sheet/{{content_data.transaction.id}}" class="btn btn-primary btn-small" ><i class="icon-save"></i> Export to Excel</a>
+{{/if}}
+	<button type="button" class="print-report btn btn-small btn-info" data-href="{{content_data.report_url}}" data-width="800" data-height="600">Print</button>
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+</div>

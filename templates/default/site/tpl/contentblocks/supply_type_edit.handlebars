@@ -1,0 +1,29 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>{{#if addform}}Add New{{else}}Edit{{/if}} Category</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{#unless addform}}{{>../blocks/message}}{{/unless}}
+		{{errors_msg}}
+		{{#with content_data}}
+			<form action="{{../ajax_save_url}}" method="post" class="form-horizontal" id="modal-form{{#if ../addform}}-add{{/if}}">
+				<div class="control-group {{#key_in_array ../errors "supply_type_name"}}error{{/key_in_array}}">
+					<label class="control-label" for="supply_type_name">Category Title</label>
+					<div class="controls">
+						<input type="text" id="supply_type_name" name="supply_type_name" value="{{supply_type_name}}">
+						<span class="help-inline error">{{#get_first_error ../errors "supply_type_name"}}</span>
+						<input type="hidden" value="{{supply_type_id}}" name="id" />
+					</div>
+				</div>
+				<input type="hidden" value="{{supply_type_id}}" name="id" />
+				<input type="hidden" value={{#if ../save_failed}}"0"{{/if}}{{#unless ../save_failed}}"1"{{/unless}} name="saved" />
+				<input type="hidden" value={{#if ../added_record}}"1"{{/if}}{{#unless ../added_record}}"0"{{/unless}} name="new_row" />
+			</form>
+		{{/with}}					
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" {{#if added_record}}data-new-row="1"{{/if}} data-form="modal-form{{#if addform}}-add{{/if}}" data-row-data="supplyTypesTableRowData">Save changes</button>
+</div>

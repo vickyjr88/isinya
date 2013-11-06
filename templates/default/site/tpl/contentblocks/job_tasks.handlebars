@@ -1,0 +1,107 @@
+<div class="row-fluid">
+<div class="span12">
+		<!-- Begin commnets form  -->
+	<div class="accordion" id="commnets-form">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#comment"><i class="icon-plus-sign"></i> Add Task </a>
+			</div>
+			<div id="comment" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<form id="add-task" class='form-horizontal'>
+						<div class='control-group'>
+							<label class='control-label'>Name</label>
+							<div class='controls'>
+								<input type='text' name='name' />
+							</div>
+						</div>
+						<div class='control-group'>
+							<label class='control-label'>No of Personnel</label>
+							<div class='controls'>
+								<input type='text' name='personnel' />
+							</div>
+						</div>
+						<div class='control-group'>
+							<label class='control-label'>Equipment</label>
+							<div class='controls'>
+								<select id ="inputJob">  
+						  			<option value = "not">Select</option>
+								  	<optgroup label ="List Of equipment" id ="org_equipment">
+								  		<option>Cutter</option>
+								  		<option>Lorry</option>
+						  			</optgroup>
+								</select>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">&nbsp;</label>
+							<div class="controls">
+								<label>
+									<input type="checkbox" id='taskExecutionStyle'><span class="lbl">Can do other tasks</span>
+								</label>
+							</div>
+						</div>
+						<div class='control-group'>
+							<label class='control-label'>Description</label>
+							<div class='controls'>
+								<textarea name='dependencies'> </textarea>
+							</div>
+						</div>
+						<div class='control-group'>
+							<label class='control-label'>Takt Time (min)</label>
+							<div class='controls'>
+								<input type='text' name='tasktackttime' />
+							</div>
+						</div>
+						<a class="btn btn-primary btn-small submit-form-ajax"  data-comment="true" data-form="modal-task-form">Save Task</a>
+					</form>
+
+				</div>
+			</div>
+		</div>		
+	</div>
+	<!-- End commnets form  -->
+	
+	<table id='jobs-task-list' class='table table-striped table-bordered table-hover table-condensed'>
+		<thead>
+			<tr>
+				<th class="center">Title</th>
+				<th>Personnel</th>
+				<th>Equipment</th>
+				<th>Takt Time (min)</th>
+				<th class="hidden-480">Depends On</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="center">Assembly</td>
+				<td>3</td>
+				<td>Required</td>
+				<td class="hidden-480">14400</td>
+				<td class="hidden-480">cleaning</td>
+			</tr>
+			<tr>
+				<td class="center">Cleaning</td>
+				<td>1</td>
+				<td>Required</td>
+				<td class="hidden-480">12000</td>
+				<td class="hidden-480">None</td>
+			</tr>
+			<tr>
+				<td class="center">Delivery</td>
+				<td>2</td>
+				<td>Required</td>
+				<td class="hidden-480">5200</td>
+				<td class="hidden-480">Wrapping</td>
+			</tr>
+			<tr>
+				<td class="center">Wrapping</td>
+				<td>1</td>
+				<td>Required</td>
+				<td class="hidden-480">14400</td>
+				<td class="hidden-480">Assembly</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</div>

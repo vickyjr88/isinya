@@ -1,0 +1,40 @@
+{{#with user_info}}
+<div class="efproChatBox" id="chatbox_{{username}}" data-user-id="{{id}}">
+	<div class="widget-header widget-header-small header-color-blue2" id="chat-header-{{username}}">
+		<h4 class="lighter smaller"><i class="icon-comment green"></i>{{username}}</h4>
+		<div class="widget-toolbar">
+			<a id="min-{{username}}" data-action="collapse" href="javascript:void(0)"><i class="icon-chevron-down"></i></a>
+			<a id="close-{{username}}" data-action="close" href="javascript:void(0)"><i class="icon-remove"></i></a>
+		</div>
+	</div>
+
+	<div class="widget-body">
+		<div class="widget-main no-padding">
+
+			<div class="dialogs">
+				<div class="chat-loader" style="margin-left: 30px">
+					<i class="icon-spinner icon-large icon-spin orange bigger-125"></i>
+					<small>Loading previous messages</small>
+				</div>
+			</div>
+			<div class="offline" style="display:none">
+				<p class="muted center">
+					<span id="chat-username">{{username}}</span> <small>isn't online right now.Your messages will be seen later</small>
+				</p>
+			</div>
+			<form class="chat-form">
+				<div class="form-actions input-append">
+					<textarea id="message-{{id}}" data-user="{{username}}" placeholder="Type your message here ..." type="text" name="message"> </textarea>
+					<!--<a id="btn-{{id}}" href="javascript:void(0)" class="btn btn-small btn-info no-radius submit-chat"><i class="icon-share-alt"></i> <span class="hidden-phone"></span></a>-->
+				</div>
+			</form>
+		</div>
+	</div>
+	<audio id="chatAudio">
+		<source src="{{../assets_url}}media/notify.ogg" type="audio/ogg">
+		<source src="{{../assets_url}}media/notify.mp3" type="audio/mpeg">
+		<source src="{{../assets_url}}media/notify.wav" type="audio/wav">
+	</audio>
+
+</div>
+{{/with}}

@@ -1,0 +1,45 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>Assign Personnel</h3>
+</div>
+<div class="modal-body" id ="assign_personnel_frm">
+	<form class="booking-form form-horizontal">
+		
+		 <div class="control-group">
+	    	<label class="control-label" for="jobDescription" >Personnel</label>
+		    <div class="controls">
+		      <select id="selequipment">
+			  	<option value="p1">Peter Oburu</option>
+			  	<option value="p1">Onesmus Mwangima</option>
+			  	<option value="p1">Ochieng Kogallo</option>
+			  	<option value="p1">Victor Wekesa</option>
+	  		</select>
+		    </div>
+		  </div>
+		   <div class="control-group">
+	    	<label class="control-label" for="jobDescription" >Time per day</label>
+		    <div class="controls">
+		      <span>
+						<input type="text" autocomplete="off" id="booking-start-time">
+					</span>
+					<span class="dash">to</span>
+					<span>
+						<input type="text" autocomplete="off" id="booking-end-time">
+					</span>
+		    </div>
+		  </div>
+		  <div class="control-group">
+	    	<label class="control-label" for="jobDescription" >Details</label>
+		    <div class="controls">
+		      <textarea id="booking-details"> </textarea>
+		    </div>
+		  </div>
+	</form>
+		            
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Back</button>
+	<!-- <button type="button" href="#" class="btn btn-primary save_order btn-small submit-form">Save changes</button> -->
+	<button type="button" href="#" data-dismiss="modal" data-dismiss="modal" class="btn btn-primary save_order btn-small submit-job">Save changes</button>
+	<!-- <a class="btn btn-primary btn-small" href='{{controller_base_url}}view'>Save and Assign Tasks</a> -->
+</div>

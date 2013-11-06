@@ -1,0 +1,314 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>Task Scheduler</h3>
+</div>
+<div class="modal-body" id ="job_schedule_frm">
+	<div class="accordion" id="orders-summary">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#order-read"><i class="icon-plus-sign"></i> Order Summary </a>
+			</div>
+			<div id="order-read" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<div class="form-horizontal">
+					<div class="control-group">
+					    <label class="control-label" for="inputDescription" >Order Description</label>
+					    <div class="controls">
+					      <!-- <input type="text" id="inputDescription" name="orderDescription" placeholder ="Enter Order name"> -->
+					      <textarea rows="2" id="inputDescription" disabled="disabled" name="orderDescription" placeholder ="Enter order description">Iphone 5C </textarea>
+					    </div>
+					  </div>
+					  <div class="control-group">
+						<label class="control-label" for="jobQuantity" >Output quantity</label>
+						<div class="controls">
+						  <input type="text" id="jobQuantity" disabled="disabled" name="jobQuantity" placeholder ="" value="4">
+						</div>
+					  </div>
+
+
+					  <div class ="control-group">
+					  		<label class="control-label" for="inputClients">Client</label>
+					  		<div class="controls">
+					  			<input type="text" id='txtinputOrder' disabled="disabled" name='txtinputjob' value='Apple Inc.'>
+					  		<!--
+							  <select id ="inputClients">
+															<option value ="default">Select</option>
+																<optgroup label ="Not Found">
+																	<option value ="new_item">Create New Client</option>
+																</optgroup>
+																<optgroup label ="List Of Clients" id ="org_client">
+																	<option>CircleK</option>
+																	<option>KSolutions</option>
+																	<option>CircSolutions</option>
+																												   </optgroup>
+														  </select>-->
+							  </div>
+					  </div>
+
+					  <div class ="control-group">
+
+					  		<label class="control-label" for="inputJob">Job Profile</label>
+					  		<div class="controls">
+				  				<input type="text" id='txtinputOrder' disabled="disabled" name='txtinputjob' value='Iphone'>
+					  		</div>
+					  </div>
+						<div class="control-group">
+							<label class="control-label">&nbsp;</label>
+							<div class="controls">
+								<label>
+									<input type="checkbox" id='repeatOrder' checked="checked" disabled="disabled" name="repeatOrder"><span class="lbl"> Repeat Order?</span>
+								</label>
+							</div>
+						</div>
+
+					  <div class="control-group">
+								  <label class="control-label" for="orderEndDate">Start Date</label>
+								  <div class="controls">
+									<input type="text" class='date-picker' name="orderStartDate" disabled="disabled" id="order_start_date" value="12-10-2013 8:00am">
+								  </div>
+							</div>
+
+
+
+					  <div class="control-group">
+								  <label class="control-label" for="orderEndDate">Promise Date</label>
+								  <div class="controls">
+									<input type="text" class='date-picker' name="orderEndDate" disabled="disabled" id="order_stop_date" value="12-10-2013 4:00pm">
+								  </div>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Begin commnets form  -->
+	<div class="accordion" id="orders-schedule-form">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#order-scheduler"><i class="icon-plus-sign"></i> Schedule Tasks </a>
+			</div>
+			<div id="order-scheduler" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<div class="tabbable">
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a href="#job-schedule-tasks" data-toggle="tab">Schedule Tasks</a>
+								</li>
+								<li>
+									<a href="#job-schedule-preview" data-toggle="tab">Preview Schedule</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="job-schedule-tasks">
+									<table id='jobs-task-list' class='table table-striped table-bordered table-hover table-condensed'>
+										<thead>
+											<tr>
+												<th class="center">Task Name</th>
+												<th>From</th>
+												<th>To</th>
+												<th>Assignees</th>
+												<th>Equipment</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="center"><span class="editable editable-field" id="field-name-1" data-name="field-name" data-pk="1" data-value="Cutting">Cutting</span></td>
+												<td><span class="editable editable-field-time" id="field-name-1" data-value="09:00" data-format="HH:mm" data-display-format="HH:mm" data-name="field-name" data-pk="1">9:00am</span></td>
+												<td><span class="editable editable-field-time" id="field-name-1" data-value="09:00" data-format="HH:mm" data-display-format="HH:mm" data-name="field-name" data-pk="1">2:00 pm</span></td>
+												<td><span class="editable editable-field-ajax-multi-select" id="task-1-personnel" data-name="task_personnel" data-pk="1" data-src="/personnel_list" data-url="/save_personnel" data-value="1:Alex,6:Ian,5:Brian" data-placeholder="Select Personnel">Alex, Ian, Brian</span></td>
+												<td class="hidden-480"><span class="editable editable-field-ajax-multi-select" id="task-1-personnel" data-name="task_equipment" data-pk="1" data-src="/equipment_list" data-url="/save_equipment" data-value="7:Nail gun,4:Tractor,10:Grader" data-placeholder="Select Personnel">Nail gun, Tractor, Grader</span></td>
+											</tr>
+											<tr>
+												<td class="center"><span class="editable editable-field" id="field-name-1" data-name="field-name" data-pk="1" data-value="Cutting">Packing</span></td>
+												<td><span class="editable editable-field-time" id="field-name-1" data-value="09:00" data-format="HH:mm" data-display-format="HH:mm" data-name="field-name" data-pk="1">9:00am</span></td>
+												<td><span class="editable editable-field-time" id="field-name-1" data-value="09:00" data-format="HH:mm" data-display-format="HH:mm" data-name="field-name" data-pk="1">2:00 pm</span></td>
+												<td><span class="editable editable-field-ajax-multi-select" id="task-1-personnel" data-name="task_personnel" data-pk="1" data-src="/personnel_list" data-url="/save_personnel" data-value="1:Alex,6:Ian,5:Brian" data-placeholder="Select Personnel">Alex, Ian, Brian</span></td>
+												<td class="hidden-480"><span class="editable editable-field-ajax-multi-select" id="task-1-personnel" data-name="task_equipment" data-pk="1" data-src="/equipment_list" data-url="/save_equipment" data-value="7:Nail gun,4:Tractor,10:Grader" data-placeholder="Select Personnel">Nail gun, Tractor, Grader</span></td>
+											</tr>
+											<tr>
+												<td class="center"><span class="editable editable-field" id="field-name-1" data-name="field-name" data-pk="1" data-value="Cutting">Wrapping</span></td>
+												<td><span class="editable editable-field-time" id="field-name-1" data-value="09:00" data-format="HH:mm" data-display-format="HH:mm" data-name="field-name" data-pk="1">9:00am</span></td>
+												<td><span class="editable editable-field-time" id="field-name-1" data-value="09:00" data-format="HH:mm" data-display-format="HH:mm" data-name="field-name" data-pk="1">2:00 pm</span></td>
+												<td><span class="editable editable-field-ajax-multi-select" id="task-1-personnel" data-name="task_personnel" data-pk="1" data-src="/personnel_list" data-url="/save_personnel" data-value="1:Alex,6:Ian,5:Brian" data-placeholder="Select Personnel">Alex, Ian, Brian</span></td>
+												<td class="hidden-480"><span class="editable editable-field-ajax-multi-select" id="task-1-personnel" data-name="task_equipment" data-pk="1" data-src="/equipment_list" data-url="/save_equipment" data-value="7:Nail gun,4:Tractor,10:Grader" data-placeholder="Select Personnel">Nail gun, Tractor, Grader</span></td>
+											</tr>
+											<tr>
+												<td class="center"><span class="editable editable-field" id="field-name-1" data-name="field-name" data-pk="1" data-value="Cutting">Driving</span></td>
+												<td><span class="editable editable-field-time" id="field-name-1" data-value="09:00" data-format="HH:mm" data-display-format="HH:mm" data-name="field-name" data-pk="1">9:00am</span></td>
+												<td><span class="editable editable-field-time" id="field-name-1" data-value="09:00" data-format="HH:mm" data-display-format="HH:mm" data-name="field-name" data-pk="1">2:00 pm</span></td>
+												<td><span class="editable editable-field-ajax-multi-select" id="task-1-personnel" data-name="task_personnel" data-pk="1" data-src="/personnel_list" data-url="/save_personnel" data-value="1:Alex,6:Ian,5:Brian" data-placeholder="Select Personnel">Alex, Ian, Brian</span></td>
+												<td class="hidden-480"><span class="editable editable-field-ajax-multi-select" id="task-1-personnel" data-name="task_equipment" data-pk="1" data-src="/equipment_list" data-url="/save_equipment" data-value="7:Nail gun,4:Tractor,10:Grader" data-placeholder="Select Personnel">Nail gun, Tractor, Grader</span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="tab-pane" id="job-schedule-preview">
+									<div class='gantt2'></div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Back</button>
+	<!-- <button type="button" href="#" class="btn btn-primary save_order btn-small submit-form">Save changes</button> -->
+	<button type="button" href="#" data-dismiss="modal" class="btn btn-primary btn-small submit-job-schedule">Save changes</button>
+	<!-- <a class="btn btn-primary btn-small" href='{{controller_base_url}}view'>Save and Assign Tasks</a> -->
+</div>
+<script>
+	(function($) {
+			"use strict";
+			$(".gantt2").gantt({
+				source: [{
+					name: "Cutting",
+					desc: "8:00am - 12:00am",
+					values: [{
+						from: "/Date(1320192000000)/",
+						to: "/Date(1322401600000)/",
+						label: "Cutting",
+						customClass: "ganttRed"
+					}]
+
+				},{
+					name: "Wrapping",
+					desc: "12:00am - 12:30pm",
+					values: [{
+						from: "/Date(1323802400000)/",
+						to: "/Date(1325685200000)/",
+						label: "Wrapping",
+						customClass: "ganttGreen"
+					}]
+				},{
+					name: "Delivery",
+					desc: "1:00pm - 3:00pm",
+					values: [{
+						from: "/Date(1326785200000)/",
+						to: "/Date(1325785200000)/",
+						label: "delivery",
+						customClass: "ganttGreen"
+					}]
+					},{
+					name: "Delivery",
+					desc: "1:00pm - 3:00pm",
+					values: [{
+						from: "/Date(1326785200000)/",
+						to: "/Date(1325785200000)/",
+						label: "delivery",
+						customClass: "ganttGreen"
+					}]
+				}],
+				navigate: "scroll",
+				maxScale: "hours",
+				itemsPerPage: 10,
+				onItemClick: function(data) {
+					//alert("Item clicked - show some details");
+				},
+				onAddClick: function(dt, rowId) {
+					//alert("Empty space clicked - add an item!");
+				},
+				onRender: function() {
+					if (window.console && typeof console.log === "function") {
+						console.log("chart rendered");
+					}
+				}
+			});
+
+			prettyPrint();
+
+			// sample select2 data
+            var personnelData = {
+                1 : 'Alex',
+                2 : 'John',
+                3 : 'Peter',
+                4 : 'Jennifer',
+                5 : 'Brian',
+                6 : 'Ian',
+                7 : 'Margaret',
+                8 : 'Evelyn',
+                9 : 'Lilian',
+                10 : 'Grace',
+            };
+
+            var equipmentData = {
+                1 : 'Lorry',
+                2 : 'Pick-up',
+                3 : 'Cutter',
+                4 : 'Tractor',
+                5 : 'Laptop',
+                6 : 'Sheers',
+                7 : 'Nail gun',
+                8 : 'Power saw',
+                9 : 'Crane',
+                10 : 'Grader',
+            };
+
+			$.mockjax({
+                url : '/personnel_list',
+                responseTime : 400,
+                response : function(settings) {
+                    var res = [];
+                    $.each(personnelData, function(i, item) {
+                        if (item.toLowerCase().search(settings.data.query.toLowerCase()) > -1) {
+                            res.push({
+                                id : i,
+                                text : item
+                            });
+                        }
+                    });
+                    this.responseText = res;
+                }
+            });
+
+            $.mockjax({
+                url : '/equipment_list',
+                responseTime : 400,
+                response : function(settings) {
+                    var res = [];
+                    $.each(equipmentData, function(i, item) {
+                        if (item.toLowerCase().search(settings.data.query.toLowerCase()) > -1) {
+                            res.push({
+                                id : i,
+                                text : item
+                            });
+                        }
+                    });
+                    this.responseText = res;
+                }
+            });
+
+            //ajax save emulation. Select "brian" to see error message
+            $.mockjax({
+                url : '/save_personnel',
+                responseTime : 400,
+                response : function(settings) {
+                    if (jQuery.isArray(settings.data.value) && jQuery.inArray('5', settings.data.value) !== -1) {
+                        this.status = 400;
+                        // any status that isn't 200 implies there's an error
+                        this.responseText = 'Brian is not available at that time.';
+                    } else {
+                        this.responseText = '';
+                    }
+                }
+            });
+
+            //ajax save emulation. Select "laptop" to see error message
+            $.mockjax({
+                url : '/save_equipment',
+                responseTime : 400,
+                response : function(settings) {
+                    if (jQuery.isArray(settings.data.value) && jQuery.inArray('5', settings.data.value) !== -1) {
+                        this.status = 400;
+                        // any status that isn't 200 implies there's an error
+                        this.responseText = 'The alptop won\'t be available at that time';
+                    } else {
+                        this.responseText = '';
+                    }
+                }
+            });
+
+		})(jQuery);
+</script>

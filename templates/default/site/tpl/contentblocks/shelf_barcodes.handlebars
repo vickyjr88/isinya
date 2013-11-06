@@ -1,0 +1,171 @@
+{{#if export_status}}
+	<style>
+		body {
+			width: 9.5in;
+			margin: 0in .1875in;
+			margin-right:0px;
+		}
+		.label {
+	        width: 350px;
+			margin-left:3px;
+			float: left;
+			border: 2px solid #000;
+			text-align: center;
+			overflow: hidden;
+		}
+		.page-break  {
+			clear: left;
+			display:block;
+			page-break-after:always;
+		}
+		@page *{
+			margin-top: 0.54cm;
+			margin-bottom: 0.54cm;
+			margin-left: 0.175cm;
+			margin-right: 0.175cm;
+		}
+		.label .ikanban-card{
+			background-color: #fff !important; 
+			color: #333 !important;
+			border: 2px solid !important;
+			padding:0px !important;
+			width:250px;
+		}
+.label .ikanban-header{
+	background-color: #000;
+	color:#fff;
+	height:45px;
+	font-weight:bolder;
+	font-size:12px;
+	text-transform:capitalize;
+	
+}
+.shelf-title{
+	text-transform: uppercase;
+	padding-top: 10px;
+	font-size: 16px;
+}
+.shelf-name{
+	border-bottom: 2px solid #000;
+	border-top: 2px solid #000;
+	color:#000;
+	background: #fff !important;
+	height: 30px;
+	padding-top:10px;
+	font-weight: bolder;
+	font-size: 14px;
+	text-transform: capitalize;
+}
+.barcode-area{
+	height:80px;
+	padding-top: 5px;
+}
+.barcode-area img{
+	padding-bottom:10px;
+}
+.shelf-name.product-name{
+	border-top: none !important;
+}
+.ikanbarn-footer{
+	height:40px !important; 
+	color: #000;
+	text-align: left;
+}
+.ikanbarn-footer .ikanban-footer-left{
+	float:left; 
+	padding: 2px 2%;
+	width: 33%;
+}
+.ikanbarn-footer .ikanban-footer-right{
+	float:right; 
+	padding: 2px 2%;
+	width: 56%;
+	border-left: 2px solid #000;
+}
+.label .ikanban-header img{
+	height:20px; 
+	width: 30px;
+	opacity: 100%;
+	float:left;
+}
+		
+		
+	</style>
+	{{#loop_to_limit 1}}
+		 <div class="label ikanban-card" style="text-align: center; ">
+				  <div class="ikanban-header" style="">
+				  <img style="float:left;height:20px;width:30px;" src="{{component_base_url}}templates/default/site/images/ikanban-logo.png">
+				    
+				  efficiency pro
+				      <div class="shelf-title">shelf kanban card</div>
+				  </div>
+				  <div class="shelf-name"  style="font-size:16px; font-weight:bold;">Shelf : {{shelf.supply_shelf_name}}</div>
+					
+		
+					<div class="barcode-area"><div class="barcode-area"><img src="{{barcode}}" /></div>
+					<div class="shelf-name product-name" style="font-size:16px; font-weight:bold;">
+					Product: {{supply.supply_name}}</div>				
+					<div class="ikanbarn-footer" style="font-size:12px;">
+						<div class="ikanbarn-footer ikanban-footer-left">
+							Lead Time: {{shelf.shelf_lead_time}} min<br/>
+							Max: {{target_level}}
+						</div>
+						<div class="ikanbarn-footer ikanban-footer-right">
+							Restock Location: {{shelf.shelf_restock_location}}<br/>
+							Reorder: {{shelf.reorder_level}}
+						</div>
+					</div>
+				</div>
+		
+		
+	{{/loop_to_limit}}
+{{else}}
+
+	<div class="row-fluid">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 style="text-aligin: center;">Kanban Card</h3>
+	</div>
+	<div class="modal-body">
+		<br clear="all"/>
+		<br clear="all"/>
+		{{#iter supply_items}}
+			<h4>Shelf : {{../shelf.supply_shelf_name}} ({{supply_name}})</h4>
+			<form method="get" action="{{controller_base_url}}supplyShelves/generate_ikanban_card/{{../shelf.supply_shelf_id}}" >
+				<div class="label ikanban-card" style="text-align: center;">
+				  <div class="ikanban-header" style="">
+				  <img src="{{component_base_url}}templates/default/site/images/ikanban-logo.png">
+				  
+				  efficiency pro
+				      <div class="shelf-title">shelf kanban card</div>
+				  </div>
+				  <div class="shelf-name">Shelf : {{../shelf.supply_shelf_name}}</div>
+					
+		
+					<div class="barcode-area"><img height="70px" src="{{../barcode_url}}?code={{product_code}}" /></div>
+					<div class="shelf-name product-name">Product: {{supply_name}}</div>				
+					<div class="ikanbarn-footer">
+						<div class="ikanbarn-footer ikanban-footer-left">
+							Lead Time: {{../shelf.shelf_lead_time}} min<br/>
+							Max: {{target_level}}
+						</div>
+						<div class="ikanbarn-footer ikanban-footer-right">
+							Restock Location: {{shelf_restock_location}}<br/>
+							Reorder: {{reorder_level}}
+						</div>
+					</div>
+				</div>
+				<input type="hidden"  name="format"  value="avery_pdf">
+				<input type="hidden"  name="item_id"  value="{{supply_id}}">
+				<div class="control-group ">
+					<label class="control-label" for="product_code"></label>
+					<div class="controls">
+						<input type="submit" class="btn btn-mini btn-info submit-form" value="Export to PDF" />
+					</div>
+				</div>
+			</form>
+			<hr/>
+		{{/iter}}
+	
+	</div>
+{{/if}}

@@ -1,0 +1,231 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>{{#if addform}}New{{else}}Edit{{/if}} Supplier</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{>../blocks/message}}
+		{{#unless addform}}
+		<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#supplier-general" data-toggle="tab">General</a>
+				</li>
+				<li>
+					<a href="#supplier-items" data-toggle="tab" class="ajax-load-tab" data-href="{{controller_base_url}}items/{{content_data.supplier_id}}">Items</a>
+				</li>
+			</ul>
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="supplier-general">
+					{{/unless}}
+					{{#with content_data}}
+					<form action="{{../ajax_save_url}}" method="post" class="form-horizontal" id="modal-form{{#if ../addform}}-add{{/if}}">
+						<div class="row-fluid">
+
+							<div class="accordion" id="accordion2">
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"> Basic information </a>
+									</div>
+									<div id="collapseOne" class="accordion-body collapse in">
+										<div class="accordion-inner">
+											<div class="control-group {{#key_in_array ../errors "supplier_code"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_code">Supplier Code</label>
+												<div class="controls">
+													<input type="text" id="supplier_code" name="supplier_code" value="{{supplier_code}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_code"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_name"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_name">Supplier</label>
+												<div class="controls">
+													<input type="text" id="supplier_name" name="supplier_name" value="{{supplier_name}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_name"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_contact_person"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_contact_person">Contact Person Names</label>
+												<div class="controls">
+													<input type="text" id="supplier_contact_person" name="supplier_contact_person" value="{{supplier_contact_person}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_contact_person"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_contact_title"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_contact_title">Contact Person Job Title</label>
+												<div class="controls">
+													<input type="text" id="supplier_contact_title" name="supplier_contact_title" value="{{supplier_contact_title}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_contact_title"}}</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"> Phone Numbers</a>
+									</div>
+									<div id="collapseTwo" class="accordion-body collapse">
+										<div class="accordion-inner">
+											<div class="control-group {{#key_in_array ../errors "supplier_business_phone"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_business_phone">Business Phone</label>
+												<div class="controls">
+													<input type="text" id="supplier_business_phone" name="supplier_business_phone" value="{{supplier_business_phone}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_business_phone"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_business_phone_ext"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_business_phone_ext">Ext</label>
+												<div class="controls">
+													<input type="text" id="supplier_business_phone_ext" name="supplier_business_phone_ext" value="{{supplier_business_phone_ext}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_business_phone_ext"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_cellphone"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_cellphone">Mobile Phone</label>
+												<div class="controls">
+													<input type="text" id="supplier_cellphone" name="supplier_cellphone" value="{{supplier_cellphone}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_cellphone"}}</span>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"> Address &amp; Online information</a>
+									</div>
+									<div id="collapseThree" class="accordion-body collapse">
+										<div class="accordion-inner">
+											<div class="control-group {{#key_in_array ../errors "supplier_street_address"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_street_address">Street</label>
+												<div class="controls">
+													<textarea id="supplier_street_address" name="supplier_street_address" class="text-area-mini">{{supplier_street_address}}</textarea>
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_street_address"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_city"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_city">City</label>
+												<div class="controls">
+													<input type="text" id="supplier_city" name="supplier_city" value="{{supplier_city}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_city"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_state_province"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_state_province">State/Province</label>
+												<div class="controls">
+													<input type="text" id="supplier_state_province" name="supplier_state_province" value="{{supplier_state_province}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_state_province"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_postal_code"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_postal_code">Zip/Postal Code</label>
+												<div class="controls">
+													<input type="text" id="supplier_postal_code" name="supplier_postal_code" value="{{supplier_postal_code}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_postal_code"}}</span>
+												</div>
+											</div>
+
+											<div class="control-group {{#key_in_array ../errors "supplier_sales_email"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_sales_email">Sales Email</label>
+												<div class="controls">
+													<input type="text" id="supplier_sales_email" name="supplier_sales_email" value="{{supplier_sales_email}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_sales_email"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_order_email"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_order_email">Order Email</label>
+												<div class="controls">
+													<input type="text" id="supplier_order_email" name="supplier_order_email" value="{{supplier_order_email}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_order_email"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "supplier_website"}}error{{/key_in_array}}">
+												<label class="control-label" for="supplier_website">Webpage</label>
+												<div class="controls">
+													<input type="text" id="supplier_website" name="supplier_website" value="{{supplier_website}}" />
+													<span class="help-inline error">{{#get_first_error ../errors "supplier_website"}}</span>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"> User infomation </a>
+									</div>
+									<div id="collapseFour" class="accordion-body collapse">
+										<div class="accordion-inner">
+											<div class="control-group {{#key_in_array ../errors "username"}}error{{/key_in_array}}" size="20">
+												<label class="control-label" for="username">Username</label>
+												<div class="controls">
+													<input type="text" id="username" name="username" value="{{user_info.username}}">
+													<span class="help-inline error">{{#get_first_error ../errors "username"}}</span>
+												</div>
+											</div>
+											<div class="control-group {{#key_in_array ../errors "password"}}error{{/key_in_array}}">
+												<label class="control-label" for="password">Password</label>
+												<div class="controls">
+													<input {{#if user_info.password}} disabled='disabled'{{/if}} type="password" id="password" name="password" value="{{user_info.password}}">
+													<span class="help-inline error">{{#get_first_error ../errors "password"}}</span>
+												</div>
+											</div>
+											<div class="control-group ">
+												<label class="control-label" for="user_type">User Type</label>
+												<div class="controls">
+													<select name="user_type">
+														{{#each ../roles}}
+														<option value="{{id}}" {{#equals_to id ../get_role}}selected="selected"{{/equals_to}}>{{name}}</option>
+														{{/each}}
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive"> Notes </a>
+									</div>
+									<div id="collapseFive" class="accordion-body collapse">
+										<div class="accordion-inner">
+											<div class="control-group {{#key_in_array ../errors "supplier_description"}}error{{/key_in_array}}">
+
+												<div class="controls">
+													<textarea id="supplier_description" name="supplier_description" style="width: 98%;"class="span9 text-area-large">{{supplier_description}}</textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<input type="hidden" value="{{supplier_id}}" name="id" />
+						<input type="hidden" value={{#if ../save_failed}}"0"{{/if}}{{#unless ../save_failed}}"1"{{/unless}} name="saved" />
+						<input type="hidden" value={{#if ../added_record}}"1"{{/if}}{{#unless ../added_record}}"0"{{/unless}} name="new_row" />
+					</form>
+					{{/with}}
+					{{#unless addform}}
+				</div>
+				<div class="tab-pane" id="supplier-items">
+					<p>Loading items..</p>
+				</div>
+			</div>
+		</div>
+		{{/unless}}
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">
+		Close
+	</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form{{#if addform}}-add{{/if}}" data-row-data="suppliersTableRowData">
+		Save changes
+	</button>
+</div>

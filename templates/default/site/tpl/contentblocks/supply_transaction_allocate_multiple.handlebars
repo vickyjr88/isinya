@@ -1,0 +1,268 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>Inventory Pull</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		<div id="ajax-message"></div>
+		<form action="{{ajax_save_url}}" method="post" class="form-horizontal" id="modal-form-multi-allocate-supply" style="margin-bottom: 5px">
+			<div class="control-group {{#key_in_array ../errors "recepient_type"}}error{{/key_in_array}}">
+				<label class="control-label" for="recepient_type">Recepient Type</label>
+				<div class="controls">
+					<select id="recepient_type" name="recepient_type" class="input-large" rel="chained-list" data-chain="#recepient_id" data-href="{{controller_base_url}}allocate_recepient_list/">
+						<option value="">-- Choose One --</option>
+						<option value="client">Client</option>
+						<option value="personnel">Personnel</option>
+					</select>
+					<span class="help-inline error">{{#get_first_error ../errors "recepient_type"}}</span>
+				</div>
+			</div>
+			<div class="control-group {{#key_in_array ../errors "recepient_id"}}error{{/key_in_array}}">
+				<label class="control-label" for="recepient_id">Recepient</label>
+				<div class="controls">
+					<select class="input-large" id="recepient_id" name="recepient_id" disabled="disabled">
+						<option value="">-- Choose One --</option>
+					</select>
+					<span class="help-inline error">{{#get_first_error ../errors "recepient_id"}}</span>
+				</div>
+			</div>
+			<div class="control-group {{#key_in_array errors "allocation_description"}}error{{/key_in_array}}">
+				<label class="control-label" for="allocation_description">Comment</label>
+				<div class="controls">
+					<textarea name="allocation_description" id="allocation_description"></textarea>
+				</div>
+			</div>
+
+			<span class="help-inline"><strong>Usage:</strong> Double-click/type inside a cell to see options</span>
+		</form>
+		<div id="grid-table"></div>
+		<div id="console"></div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button id="pull-sheet-btn" class="btn btn-info btn-small pull-left child-modal" title="Pull Sheet" data-width="500" data-href="{{controller_base_url}}transaction/"><i class="icon-file"> Pull Sheet</i></button>
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" class="btn btn-primary btn-small" data-form="modal-form-multi-allocate-supply" data-before-submit="beforeSubmitMultipleAllocations">Submit</button>
+</div>
+<script type="text/javascript">
+	var shelfList, countList;
+	var ssspIDList; // array of shelf -> sssp_id mapped object;
+	var shelfIDList; // array of shelf name -> supply_shelf_id mapped object;
+	var pullSheetUrl;
+	function myAutocompleteRenderer(instance, td, row, col, prop, value, cellProperties) {
+		Handsontable.AutocompleteCell.renderer.apply(this, arguments);
+		td.style.fontStyle = 'italic';
+		td.title = 'Type to show the list of options';
+	}
+
+	function loadData(query, process, url, side) {
+		var $tableDiv = $("#grid-table");
+		var result = "";
+		var array = $tableDiv.handsontable('getSelected').toString().split(',');
+		var row, col = 0;
+		console.log(array);
+		if (array.length > 0) {
+			row = parseInt(array[2]);
+			col = parseInt(array[3]);
+		}
+		var data = {
+			filter : query
+		};
+		var selectedItem = $tableDiv.handsontable('getDataAtCell', parseInt(row), 0);
+		var selectedShelf = $tableDiv.handsontable('getDataAtCell', parseInt(row), 1);
+		if (selectedItem) {
+			if (parseInt(col) == 1 || parseInt(col) == 2) {
+				data.item = selectedItem.toString();
+			}
+			if (selectedShelf && parseInt(col) == 2){
+				data.ssspId = ssspIDList[selectedShelf.toString()];
+				data.shelf_id = shelfIDList[selectedShelf.toString()];
+			}
+
+		}
+		var url = (parseInt(col) == 1) ? '{{controller_base_url}}allocate_item_shelf_list' : '{{controller_base_url}}allocate_item_shelf_count_list';
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : data,
+			async : false,
+			dataType : "json",
+			success : function(response) {
+				if (response.data) {
+					if (parseInt(col) == 1){
+						shelfList = response.data.shelves;
+						result = shelfList;
+						// Get sssp_ids for later use
+						ssspIDList = response.data.sssp_ids;
+						shelfIDList = response.data.shelf_ids;
+					}
+					if (parseInt(col) == 2) {
+						countList = response.data;
+						result = countList;
+					}
+				} else {
+					alert("Error! " + response.msg.message_body);
+				}
+			},
+			error : function() {
+				alert("Error! Contact system admin.");
+			}
+		});
+		return result;
+	}
+
+	function refreshColumns(data, source) {
+		if (data != null) {
+			//console.log(ssspIDList);
+			var row = data[0][0];
+			var col = data[0][1];
+			if ((col == 0 || col == 1)) {// refresh columns if editing column 0/1
+				$('#grid-table').handsontable('setDataAtCell', row, parseInt(col) + 1, (col == 0) ? '--Select--' : '1', 'populateFromArray');
+				if (col == 1 && ssspIDList){
+					// refresh sssp_id
+					$('#grid-table').handsontable('setDataAtCell', row, 3, ssspIDList[data[0][3]], 'populateFromArray');
+				}
+			}
+		}
+	}
+
+	function initGrid(){
+		$("#grid-table").handsontable({
+			startCols : 4,
+			minSpareRows : 1,
+			width: 360,
+			colWidths: [173, 110, 76],
+			autoWrapRow : true,
+			colHeaders : ["Item", "Shelf", "Allocation"],
+			onChange : function(data, source) {
+				refreshColumns(data, source);
+			},
+			beforeChange : function(changes, source) {
+				if (source == 'edit' || source == 'paste') {
+					for (var i = changes.length - 1; i >= 0; i--) {
+						console.log(changes[i][3]);
+						// implement strict autocomplete for column 2 & 3
+						if (jQuery.inArray(changes[i][3], countList) == -1 || jQuery.inArray(changes[i][2], shelfList) == -1)
+							changes.splice(i, 1);
+					}
+				}
+			},
+			columns : [{
+				type : {
+					renderer : myAutocompleteRenderer,
+					editor : Handsontable.AutocompleteEditor
+				},
+				source : function(query, process) {
+					$.ajax({
+						url : '{{controller_base_url}}allocate_item_list',
+						data : {
+							filter : query
+						},
+						async : false,
+						dataType : "json",
+						type : 'POST',
+						success : function(response) {
+							console.log("response", response);
+							if (response.data)
+								process(response.data);
+							else
+								alert("Error! " + response.msg.message_body);
+						},
+						error : function() {
+							alert("Error! Contact system admin.");
+						}
+					});
+				},
+				strict : true
+			}, {
+				type : {
+					renderer : myAutocompleteRenderer,
+					editor : Handsontable.AutocompleteEditor
+				},
+				source : function(query, process) {
+					var result = loadData(query, process);
+					process(result);
+				},
+				strict : false
+			}, {
+				type : {
+					renderer : myAutocompleteRenderer,
+					editor : Handsontable.AutocompleteEditor
+				},
+				source : function(query, process) {
+					var result = loadData(query, process);
+					process(result);
+				},
+				strict : false
+			}]
+		});
+	}
+	// delay init slightly to avert ajax loading issues on js execution
+	window.setTimeout(initGrid, 250);
+
+	$('#pull-sheet-btn').hide();
+
+	$('[data-form="modal-form-multi-allocate-supply"]').click(function() {
+		var rowList = $("#grid-table").handsontable("getData");
+		var $console = $('#console');
+		if ((rowList.length == 1 && (!rowList[0][0] || !rowList[0][1] || !rowList[0][2])) || !$("#recepient_type").val() || !$("#recepient_id").val()){
+			showUserMsg('Please ensure the data you provided is valid!', 'error');
+			return false;
+		}
+		// remove spare row
+		rowList.pop();
+
+		$.ajax({
+			url : "{{controller_base_url}}allocate",
+			data : {
+				"data" : rowList,
+				"recepient_type" : $("#recepient_type").val(),
+				"recepient_id" : $("#recepient_id").val(),
+				"allocation_description" : $('#allocation_description').val(),
+			},
+			dataType : 'json',
+			type : 'POST',
+			success : function(resp) {
+				if (resp.msg && resp.msg.type == 'success') {
+					showUserMsg(resp.msg.message_body, 'success');
+					$("#grid-table").data("handsontable").loadData(rowList);
+					if (!pullSheetUrl)
+						pullSheetUrl = $('#pull-sheet-btn').data('href');
+					$('#pull-sheet-btn').data('href', pullSheetUrl + resp.data.join());
+					$('#pull-sheet-btn').show();
+				} else {
+					$("#grid-table").data("handsontable").loadData(resp.error);
+					showUserMsg(resp.msg.message_body, 'error');
+				}
+			},
+			error : function() {
+				showUserMsg('System error! Close this window and try again', 'error');
+				$("#grid-table").data("handsontable").loadData(rowList);
+			}
+		});
+	});
+
+	/*window.beforeSubmitMultipleAllocations = function(){
+		var rowList = $("#grid-table").handsontable("getData");
+		var $console = $('#console');
+		if ((rowList.length == 1 && (!rowList[0][0] || !rowList[0][1] || !rowList[0][2])) || !$("#recepient_type").val() || !$("#recepient_id").val()){
+			$console.css('color', 'red');
+			$console.text('Please ensure the data you provided is valid!');
+			return false;
+		}
+		console.log(rowList);
+		//if (rowList){
+			// remove spare row
+			rowList.pop();
+			if (rowList.length == 0)
+				return false;
+			var list = [];
+			$(rowList).each(function(row, i){
+		        list.push({name: 'data[]' + list.length, value: row});
+		    });
+		    return list;//$.param(list);
+		//}else{
+			//return false;//[{name: 'data[]', value: ["HP Printer", "Shelf A", "4"]}];
+		//}
+	}*/
+</script>

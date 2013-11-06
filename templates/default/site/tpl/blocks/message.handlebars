@@ -1,0 +1,10 @@
+{{#if user_msg}}
+<div class="row-fluid message-container">
+	<div class="span12">
+		<div class="alert alert-{{user_msg.type}} fade in">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong style="text-transform:capitalize;">{{user_msg.type}}!</strong> {{user_msg.message_body}}
+		</div>
+	</div>
+</div>
+{{/if}}

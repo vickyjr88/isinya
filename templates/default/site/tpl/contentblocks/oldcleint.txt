@@ -1,0 +1,35 @@
+div class="vcard-separator"><span class="group-heading">L</span></div>
+
+	<div class="well well-small vcard">
+		<div class="avatar label-grey">&nbsp;</div>
+		<span class="title">Local Church</span>
+		<span class="position">Lori Pharis</span>
+	</div>
+	
+	<div class="vcard-separator"><span class="group-heading">P</span></div>
+	
+	<div class="well well-small vcard">
+		<div class="avatar label-info">&nbsp;</div>
+		<span class="title">Post Office</span>
+		<span class="position"></span>
+	</div>
+	
+	<div class="well well-small vcard">
+		<div class="avatar label-important">&nbsp;</div>
+		<span class="title">Prayer Center</span>
+		<span class="position">Rovella Watson</span>
+	</div>
+	
+	<div class="well well-small vcard">
+		<div class="avatar label-pink">&nbsp;</div>
+		<span class="title">Publications</span>
+		<span class="position">Jeff Barnheart</span>
+	</div>
+	
+	<div class="vcard-separator"><span class="group-heading">T</span></div>
+	
+	<div class="well well-small vcard">
+		<div class="avatar label-yellow">&nbsp;</div>
+		<span class="title">TV Department</span>
+		<span class="position">Eric Cordwell</span>
+	</div>

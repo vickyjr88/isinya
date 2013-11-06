@@ -1,0 +1,172 @@
+<script type="text/javascript" src="{{template_path}}js/zenbox-2.6.js"></script>
+<style type="text/css" media="screen, projection">
+    @import url({{template_path}}css/zenbox.css);
+</style>
+<script type="text/javascript">
+if (typeof (Zenbox) !== "undefined") {
+    Zenbox.init({
+        dropboxID: "20210147",
+        url: "https://circleksupport.zendesk.com",
+        tabTooltip: "Support",
+        tabImageURL: "{{template_path}}images/tab_support_top.png",
+        tabColor: "#2787CE",
+        tabPosition: "Top"
+    });
+}
+</script>
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+            <a class="brand" href=""><small><i class="icon-leaf"></i> {{site_name}}</small> </a>
+            <ul class="nav ace-nav pull-right">
+                
+                <!--
+                <li class="grey">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-tasks"></i> <span class="badge">4</span> </a>
+                                                        <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
+                                                                <li class="nav-header">
+                                                                        <i class="icon-ok"></i> Job updates
+                                                                </li>
+                
+                                                                <li>
+                                                                        <a href="#">
+                                                                        <div class="clearfix">
+                                                                                <span class="pull-left"> Efficiency Pro</span>
+                                                                                <span class="pull-right">65%</span>
+                                                                        </div>
+                                                                        <div class="progress progress-mini">
+                                                                                <div class="bar" style="width:65%"></div>
+                                                                        </div> </a>
+                                                                </li>
+                
+                                                                <li>
+                                                                        <a href="#">
+                                                                        <div class="clearfix">
+                                                                                <span class="pull-left"> Visa-to-Mpesa</span>
+                                                                                <span class="pull-right">35%</span>
+                                                                        </div>
+                                                                        <div class="progress progress-mini progress-danger">
+                                                                                <div class="bar" style="width:35%"></div>
+                                                                        </div> </a>
+                                                                </li>
+                
+                                                                <li>
+                                                                        <a href="#">
+                                                                        <div class="clearfix">
+                                                                                <span class="pull-left"> Church Video Site</span>
+                                                                                <span class="pull-right">15%</span>
+                                                                        </div>
+                                                                        <div class="progress progress-mini progress-warning">
+                                                                                <div class="bar" style="width:15%"></div>
+                                                                        </div> </a>
+                                                                </li>
+                
+                                                                <li>
+                                                                        <a href="#">
+                                                                        <div class="clearfix">
+                                                                                <span class="pull-left">Maintenance Schedule</span>
+                                                                                <span class="pull-right">90%</span>
+                                                                        </div>
+                                                                        <div class="progress progress-mini progress-success progress-striped active">
+                                                                                <div class="bar" style="width:90%"></div>
+                                                                        </div> </a>
+                                                                </li>
+                
+                                                                <li>
+                                                                        <a href="#"> View all Jobs <i class="icon-arrow-right"></i> </a>
+                                                                </li>
+                                                        </ul>
+                                                </li>
+                
+                                                <li class="purple">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-bell-alt icon-animated-bell icon-only"></i> <span class="badge badge-important">8</span> </a>
+                                                        <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-closer">
+                                                                <li class="nav-header">
+                                                                        <i class="icon-warning-sign"></i> 8 Notifications
+                                                                </li>
+                
+                                                                <li>
+                                                                        <a href="#">
+                                                                        <div class="clearfix">
+                                                                                <span class="pull-left"><i class="icon-user btn btn-mini btn-pink"></i> New jobs</span>
+                                                                                <span class="pull-right badge badge-info">+12</span>
+                                                                        </div> </a>
+                                                                </li>
+                
+                                                                <li>
+                                                                        <a href="#"> <i class="icon-warning-sign btn btn-mini btn-primary"></i> Inventory running low </a>
+                                                                </li>
+                
+                                                                <li>
+                                                                        <a href="#">
+                                                                        <div class="clearfix">
+                                                                                <span class="pull-left"><i class="icon-shopping-cart btn btn-mini btn-success"></i> New supplies</span>
+                                                                                <span class="pull-right badge badge-success">+8</span>
+                                                                        </div> </a>
+                                                                </li>
+                                                        </ul>
+                                                </li>-->
+
+
+                <li class="green">
+                    <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-envelope-alt icon-animated-vertical icon-only"></i>
+                        <span class="badge badge-success">{{message_count}}</span>
+                    </a>
+                    <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
+                        <li class="nav-header">
+                            <i class="icon-envelope"></i> {{message_count}} Messages
+                        </li>
+                        {{#each recent_messages}}
+                        <li>
+                            <a  class="offline-message" data-message-id="{{sender}}" >
+                                <img alt="{{user_info.username}}" class="msg-photo" src="assets/avatars/{{#if user_info.personnel_info.personnel_avatar}}{{user_info.personnel_info.personnel_avatar}}{{else}}default.png{{/if}}" />
+                                <span class="msg-body">
+                                    <span class="msg-title">
+                                        <span style="widows: inherit" class="blue">{{user_info.username}}:</span>
+                                        {{message}}
+                                    </span>
+                                    <span class="msg-time">
+                                        <i class="icon-time"></i> <abbr class="timeago" title="{{#ISO_format_date time}}{{/ISO_format_date}}">{{#ISO_format_date time}}{{/ISO_format_date}}</abbr>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        {{/each}}
+                        <li>
+                            <a href="chat/conversations">
+                                See all messages
+                                <i class="icon-arrow-right"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="light-blue user-profile">
+                    <a class="user-menu dropdown-toggle" href="#" data-toggle="dropdown">
+                        <img alt="Jason's Photo" src="{{template_path}}avatars/avatar2.png" class="nav-user-photo" />
+                        <span id="user_info">
+                            {{#if comment}}<small class="hidden-phone">Welcome, {{username}}</small>{{/if}}
+                            <small>My Account</small>
+                        </span>
+                        &nbsp;<i class="icon-caret-down"></i>
+                    </a>
+                    <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+                        {{#if comment}}<!--<li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+                        <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+                        <li class="divider"></li>-->{{/if}}
+                        <li><a class="ajax-modal" data-width="900"  data-href="{{component_base_url}}personnel/edit_profile/{{user_info.personnel_info.personnel_id}}"><i class="icon-user"></i> Profile</a></li>
+                        <li>
+                            <a href="{{component_base_url}}user/logout"><i class="icon-off"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div><!--/.container-fluid-->
+    </div><!--/.navbar-inner-->
+</div><!--/.navbar-->

@@ -1,0 +1,56 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>Schedule Task</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		<div class="span9">
+			<div class="space"> </div>
+			<form id="add-task" class='form-horizontal'>
+				<div class='control-group'>
+					<label class='control-label'>Name</label>
+					<div class='controls'>
+						<input type='text' name='name' />
+					</div>
+				</div>
+				<div class='control-group'>
+					<label class='control-label'>No of Personnel</label>
+					<div class='controls'>
+						<input type='text' name='personnel' />
+					</div>
+				</div>
+				<div class='control-group'>
+					<label class='control-label'>Equipment</label>
+					<div class='controls'>
+						<select id ="inputJob">  
+				  			<option value = "not">Select</option>
+						  	<optgroup label ="List Of equipment" id ="org_equipment">
+						  		<option>Cutter</option>
+						  		<option>Lorry</option>
+				  			</optgroup>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+			<label class="control-label">&nbsp;</label>
+			<div class="controls">
+				<label>
+					<input type="checkbox" id='taskExecutionStyle'><span class="lbl">Can do other tasks</span>
+				</label>
+			</div>
+		</div>
+				<div class='control-group'>
+					<label class='control-label'>Description</label>
+					<div class='controls'>
+						<textarea name='dependencies'> </textarea>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form-add">Save changes</button>
+</div>

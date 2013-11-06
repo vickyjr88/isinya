@@ -1,0 +1,101 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	{{#user_can EQUIPMENT_EDIT}}
+	<h3>{{#if addform}}New{{else}}Edit{{/if}} Equipment Item</h3>
+	{{/user_can}}
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{>../blocks/message}}
+		{{#unless addform}}
+		<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#item-general{{#if addform}}-add{{/if}}" data-toggle="tab">Equipment Information</a>
+				</li>
+				<li>
+					<a href="#comments-tab" data-toggle="tab" class="ajax-load-tab" data-href="{{controller_base_url}}comments/{{content_data.equipment_id}}">Comments</a>
+				</li>
+				<!--<li>
+					<a href="#comments-tab" data-toggle="tab" class="ajax-load-tab" data-href="{{controller_base_url}}schedules/{{content_data.equipment_id}}">Task Schedules</a>
+				</li>-->
+				
+			</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="item-general">{{/unless}}
+						{{#with content_data}}
+						<form action="{{../ajax_save_url}}" encoding="multipart/form-data" enctype="multipart/form-data" method="post" class="form-horizontal" id="modal-form{{#if ../addform}}-add{{/if}}">
+							<div class="row-fluid">
+								<div class="span6">
+									<p class="fieldset-title">Equipment Information</p>
+									<div class="control-group {{#key_in_array ../errors "equipment_name"}}error{{/key_in_array}}">
+										<label class="control-label" for="equipment_name">Equipment Name</label>
+										<div class="controls">
+											<input type="text" id="equipment_name" name="equipment_name" value="{{equipment_name}}">
+											<span class="help-inline error">{{#get_first_error ../errors "equipment_name"}}</span>
+										</div>
+									</div>
+									<div class="control-group {{#key_in_array ../errors "serial_number"}}error{{/key_in_array}}">
+										<label class="control-label" for="serial_number">Serial Number</label>
+										<div class="controls">
+											<input type="text" id="serial_number" name="serial_number" value="{{serial_number}}">
+											<span class="help-inline error">{{#get_first_error ../errors "serial_number"}}</span>
+										</div>
+									</div>
+									<div class="control-group {{#key_in_array ../errors "production_capacity"}}error{{/key_in_array}}">
+										<label class="control-label" for="production_capacity">Production Capacity</label>
+										<div class="controls">
+											<input type="text" id="production_capacity" name="production_capacity" value="{{production_capacity}}">
+											<span class="help-inline error">{{#get_first_error ../errors "production_capacity"}}</span>
+										</div>
+									</div>
+									<div class="control-group {{#key_in_array ../errors "equipment_purchase_date"}}error{{/key_in_array}}">
+										<label class="control-label" for="equipment_purchase_date">Purchase Date</label>
+										<div class="controls">
+											<input class="date-picker" data-date-format="dd-mm-yyyy" type="text"  id="equipment_purchase_date" name="equipment_purchase_date" value="{{equipment_purchase_date}}">
+											<span class="help-inline error">{{#get_first_error ../errors "equipment_purchase_date"}}</span>
+										</div>
+									</div>
+									
+									<div class="control-group {{#key_in_array ../errors "last_service_date"}}error{{/key_in_array}}">
+										<label class="control-label" for="last_service_date">Last Service Date</label>
+										<div class="controls">
+											<input class="date-picker" data-date-format="dd-mm-yyyy" type="text" id="last_service_date" name="last_service_date" value="{{last_service_date}}">
+											<span class="help-inline error">{{#get_first_error ../errors "last_service_date"}}</span>
+										</div>
+									</div>
+									
+								</div>
+								<div class="span6">
+									<p class="fieldset-title">Equipment Image</p>
+									<div class="control-group {{#key_in_array ../errors "equipment_avatar"}}error{{/key_in_array}}">
+										<div>
+											<img id="supply-thumb-{{equipment_id}}" src="{{#if equipment_avatar}}{{component_base_url}}assets/avatars/{{equipment_avatar}}{{else}}{{../template_path}}avatars/avatar-default.png{{/if}}" width="40" height="40" class="img-polaroid" />
+											<a data-url="equipment/delete_avatar/{{equipment_id}}" class="confirm-delete" data-msg="Are you sure you want to delete this image"><i class="icon-remove red icon-large"></i></a>
+										</div>
+										<br/><input type="file" id="avatar" name="avatar" >
+										<input type="hidden" id="equipment_avatar" name="equipment_avatar" value="{{equipment_avatar}}" >
+									</div>
+								</div>
+							</div>
+							<input type="hidden" value="{{equipment_id}}" name="id" />
+							<input type="hidden" value={{#if ../save_failed}}"0"{{/if}}{{#unless ../save_failed}}"1"{{/unless}} name="saved" />
+							<input type="hidden" value={{#if ../added_record}}"1"{{/if}}{{#unless ../added_record}}"0"{{/unless}} name="new_block" />
+							<input type="hidden" value="e" name="block_type" />
+						</form>
+						{{/with}}
+					{{#unless addform}}
+					</div>
+					<div class="tab-pane" id="comments-tab"><p>Loading items..</p></div>
+					<!--<div class="tab-pane" id="schedules-tab"><p>Loading items..</p></div>-->
+					</div>
+			</div>
+
+		
+		{{/unless}}
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form{{#if addform}}-add{{/if}}"  data-block-data="equipmentBlockData">Save changes</button>
+</div>

@@ -1,0 +1,132 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+		&times;
+	</button>
+	<h3>{{#if addform}}New{{else}}Edit{{/if}}{{#if profile_mode}}&nbsp;Personnel{{else}} &nbsp;Profile{{/if}}</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{>../blocks/message}}
+		{{#unless addform}}
+		<div>
+			{{/unless}}
+			{{#with content_data}}
+			<form action="{{../ajax_save_url}}" encoding="multipart/form-data" enctype="multipart/form-data" method="post" class="form-horizontal" id="modal-form{{#if ../addform}}-add{{/if}}">
+				<div class="row-fluid">
+					<div class="span6">
+						<p class="fieldset-title">
+							Basic information
+						</p>
+						<div class="control-group {{#key_in_array ../errors "personnel_name"}}error{{/key_in_array}}">
+							<label class="control-label" for="personnel_name">Personnel Names</label>
+							<div class="controls">
+								<input type="text" id="personnel_name" name="personnel_name" value="{{personnel_name}}">
+								<span class="help-inline error">{{#get_first_error ../errors "personnel_name"}}</span>
+							</div>
+						</div>
+						<div class="control-group {{#key_in_array ../errors "personnel_title"}}error{{/key_in_array}}">
+							<label class="control-label" for="personnel_title">Title</label>
+							<div class="controls">
+								<input type="text" id="personnel_title" name="personnel_title" value="{{personnel_title}}">
+								<span class="help-inline error">{{#get_first_error ../errors "personnel_title"}}</span>
+							</div>
+						</div>
+						<div class="control-group {{#key_in_array ../errors "personnel_telephone"}}error{{/key_in_array}}">
+							<label class="control-label" for="personnel_telephone">Telephone</label>
+							<div class="controls">
+								<input type="text" id="personnel_telephone" name="personnel_telephone" value="{{personnel_telephone}}">
+								<span class="help-inline error">{{#get_first_error ../errors "personnel_telephone"}}</span>
+							</div>
+						</div>
+						<div class="control-group {{#key_in_array ../errors "personnel_email_address"}}error{{/key_in_array}}">
+							<label class="control-label" for="personnel_email_address">Email Address</label>
+							<div class="controls">
+								<input type="text" id="personnel_email_address" name="personnel_email_address" value="{{personnel_email_address}}">
+								<span class="help-inline error">{{#get_first_error ../errors "personnel_email_address"}}</span>
+							</div>
+						</div>
+						{{#if ../profile_mode}}
+						<div class="control-group {{#key_in_array ../errors "personnel_active"}}error{{/key_in_array}}">
+							<label class="control-label" for="personnel_active">Active</label>
+							<div class="controls">
+								<select name="personnel_active">
+									<option value="0" {{#equals_to personnel_active 0}}selected="selected"{{/equals_to}}>Inactive</option>
+									<option value="1"{{#equals_to personnel_active 1}}selected="selected"{{/equals_to}}>Active</option>
+								</select>
+								<span class="help-inline error">{{#get_first_error ../errors "personnel_active"}}</span>
+							</div>
+						</div>
+						<div class="control-group ">
+							<label class="control-label" for="user_type">User Type</label>
+							<div class="controls">
+								<select name="user_type">
+									{{#each ../roles}}
+									<option value="{{id}}" {{#equals_to id ../get_role}}selected="selected"{{/equals_to}}>{{name}}</option>
+									{{/each}}
+								</select>								
+							</div>
+						</div>
+						{{/if}}
+					</div>
+					<div class="span6">
+						<p class="fieldset-title">
+							User Information
+						</p>
+						<div class="control-group{{#key_in_array ../errors "personnel_avatar"}}error{{/key_in_array}}">
+							<div>
+								<img id="supply-thumb-{{personnel_id}}" src="{{#if personnel_avatar}}{{../component_base_url}}assets/avatars/{{personnel_avatar}}{{else}}{{../component_base_url}}assets/avatars/default.png{{/if}}" width="40" height="40" class="img-polaroid" >
+								<a data-url="personnel/delete_avatar/{{personnel_id}}" class="confirm-delete" data-msg="Are you sure you want to delete this image"><i class="icon-remove red icon-large"></i></a>
+							</div>
+							<br/>
+							<input type="file" id="avatar" name="avatar" >
+							<input type="hidden" id="item_avatar" name="personnel_avatar" value="{{personnel_avatar}}" />
+						</div>
+						<div class="control-group {{#key_in_array ../errors "username"}}error{{/key_in_array}}">
+							<label class="control-label" for="username">Username</label>
+							<div class="controls">
+								<input type="text" id="username" name="username" value="{{user_info.username}}">
+								<span class="help-inline error">{{#get_first_error ../errors "username"}}</span>
+							</div>
+						</div>
+						{{#if ../profile_mode}}
+						<div class="control-group {{#key_in_array ../errors "password"}}error{{/key_in_array}}">
+							<label class="control-label" for="password">Password</label>
+							<div class="controls">
+								<input {{#if user_info.password}} disabled='disabled'{{/if}} type="password" id="password" name="password" value="{{user_info.password}}">
+								<span class="help-inline error">{{#get_first_error ../errors "password"}}</span>
+							</div>
+						</div>		
+						{{/if}}				
+						{{#user_can USERS_EDIT}}
+						<div class="control-group ">
+							<label class="control-label" for="user_type">User Type</label>
+							<div class="controls">
+								<select name="user_type">
+									{{#each ../roles}}
+									<option value="{{id}}" {{#equals_to id ../get_role}}selected="selected"{{/equals_to}}>{{name}}</option>
+									{{/each}}
+								</select>								
+							</div>
+						</div>
+						{{/user_can}}					
+					</div>
+				</div>
+				<input type="hidden" value="{{personnel_id}}" name="id" />
+				<input type="hidden" value={{#if ../save_failed}}"0"{{/if}}{{#unless ../save_failed}}"1"{{/unless}} name="saved" />
+				<input type="hidden" value={{#if ../added_record}}"1"{{/if}}{{#unless ../added_record}}"0"{{/unless}} name="new_block" />
+				<input type="hidden" value="p" name="block_type" />
+			</form>
+			{{/with}}
+			{{#unless addform}}
+		</div>
+		{{/unless}}
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">
+		Close
+	</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form{{#if addform}}-add{{/if}}" data-block-data="personnelBlockData">
+	Save changes
+	</button>
+</div>

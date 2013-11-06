@@ -1,0 +1,28 @@
+<table class="table table-condensed table-hover data-table">
+
+  <thead>
+    <tr>
+      <!-- <th ><input type="checkbox"></th> -->
+      <th class="span3">Sender</th>     
+      <th >Message</th>
+      <th class="span3">Time</th>
+      <th class="span3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{{#each messages}}
+    <tr>
+      <!-- <td><input type="checkbox" /></td> -->
+      <td><a href="{{../system_functions_url}}conversations/{{sender.sender}}"><strong>{{sender.user_info.personnel_info.personnel_name}} <span class="text {{#if unread_messages}}{{else}}text-success{{/if}} pull-right">{{#if unread_messages}}({{unread_messages}}) Unread{{else}}(0) Unread{{/if}}</span><strong></a></td>
+      <td>{{latest_message.message}}</td>
+      <td><strong>{{latest_message.get_formatted_date}}</strong></td>
+      <td>
+		<div class="hidden-phone visible-desktop btn-group">
+			<button class="btn btn-mini btn-info perform-action" title="Mark All As Read" data-width="1300" data-href="{{../controller_base_url}}mark_all_as_read/{{sender.sender}}"><i class="icon-edit"></i></button>
+			<button class="btn btn-mini btn-danger confirm-action" title="Delete Conversation" data-href="{{../controller_base_url}}delete_all_conversations/{{sender.sender}}" data-ajax="0" data-msg="Are you sure you want to delete these conversations?"><i class="icon-trash"></i></button>
+		</div>
+	</td>
+    </tr> 
+    {{/each}}
+  </tbody>
+</table>

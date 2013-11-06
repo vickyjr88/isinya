@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset={{charset}}" />
+		<meta http-equiv="Content-Language" content="{{meta_language}}" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<base href="{{base_url}}"/>
+		<title>{{title_prefix}}{{page_title}}{{title_suffix}}</title>
+		<!-- <meta charset="{{charset}}" /> -->
+		<meta name="keywords" content="{{meta_keywords}}" />
+		<meta name="description" content="{{meta_description)}}" />
+		<meta name="copyright" content="{{meta_copyright}}" />
+		
+		{{&globalstyles}}
+		{{&theme_css}}
+		{{&pagestyles}}
+	</head>
+	<body>
+		<div id="confirmDiv"></div>
+	    <div class="row-fluid">
+	    	{{#if logged_in}}
+	    	{{>header}}
+	    	{{else}}
+	    	{{>header_login}}
+	    	{{/if}}
+	    </div>
+	    {{>topnav}}
+		<div class="row-fluid">
+			{{#if logged_in}}
+			<div class="span2 sidebar-nav">
+		  		{{#menu menuname currentmenuitem}}
+		  		
+		  	</div>
+		  
+			<div class="span8 content-body">
+				{{#if user_msg}}
+		    	<div class="row">
+					<div class="span11 message">{{>message}}</div>
+				</div>
+				{{/if}}
+		    	{{>content}}
+		    	<div id="pagination">{{>pagination}}</div>
+		    </div>
+			<div class="span2 sidebar-nav friends-list">{{>sidebar}}</div>
+			{{else}}
+			<div class="span7 content-body">
+				<!--<div class="row">
+					<div class="span11 message">{{>message}}</div>
+				</div>-->
+		    	{{>content}}
+		    </div>
+		    <div class="span5">
+		    	<div class="provider-logo provider-logo-{{theme_name}}"></div>
+		    </div>
+			{{/if}}
+		</div>
+		<hr>		
+		{{>footer}}
+		{{&globalscripts}}
+		<script type="text/javascript">
+			$(function () {
+				window.showConfirm = function(options) {
+					options || {};
+					$("#confirmDiv").confirmModal(options);
+				};
+			});
+		</script>
+		{{&pagescripts}}
+	</body>
+</html>

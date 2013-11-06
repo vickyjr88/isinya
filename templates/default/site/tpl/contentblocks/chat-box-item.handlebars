@@ -1,0 +1,18 @@
+{{#with msg_info}}
+<div class="itemdiv dialogdiv chat-msg" data-user="{{username}}">
+	<div class="user">
+		<img alt="{{username}}" src="{{avatar}}" />
+	</div>
+	
+	<div class="body">
+		<div class="time"><i class="icon-time"></i> <span class="green">{{time}}</span></div>
+		
+		<div class="name">
+			<span>{{username}}</span>
+			<span class="label label-info arrowed arrowed-in-right">{{dept}}</span>
+		</div>
+		
+		<div class="text msg-text" data-msgid="{{id}}">{{msg}}</div>
+	</div>
+</div>
+{{/with}}

@@ -1,0 +1,47 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>Upload images</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+	{{>../blocks/message}}
+<form action="{{	ajax_save_url}}" method="post" class="form-horizontal" enctype="multipart/form-data" id="modal-form-add">
+
+						<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+								
+								<div class="controls">
+									<input type="file" id="image1" name="image1" placeholder="" value="">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+						</div>
+						<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+								
+								<div class="controls">
+									<input type="file" id="image2" name="image2" placeholder="" value="">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+						</div>
+					<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+								
+								<div class="controls">
+									<input type="file" id="image3" name="image3" placeholder="" value="">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+						</div>
+					<div class="control-group {{#key_in_array ../errors "supply_description"}}error{{/key_in_array}}">
+								
+								<div class="controls">
+									<input type="file" id="image4" name="image4" placeholder="" value="">
+									<span class="help-inline error">{{#get_first_error ../errors "supply_description"}}</span>
+								</div>
+						</div>
+							
+							
+						
+						</form>
+						</div>
+						</div>
+						<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" class="btn btn-primary btn-small submit-form" data-form="modal-form-add" data-row-data="supplyTableRowData">Upload</button>
+</div>

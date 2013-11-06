@@ -1,0 +1,9 @@
+{{#with user_info}}
+<li>
+	<a onClick="javascript:void(0);" class="chat-list-user" data-user-id="{{id}}" data-username="{{username}}">
+		<img class="nav-user-photo" src="{{avatar}}" alt="{{username}}">
+		<span class="user-name">{{username}}</span>
+		<i class="user-status status-busy"></i>
+	</a>
+</li>
+{{/with}}

@@ -1,0 +1,44 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>New Job</h3>
+</div>
+<div class="modal-body" id ="new_job_frm">
+	<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#job-profiles-general" data-toggle="tab">General</a>
+				</li>
+				<li>
+					<a href="#job-profiles-tasks" data-toggle="tab" class="ajax-load-tab" data-href="{{controller_base_url}}view">Tasks</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="job-profiles-general">
+					<form class="form-horizontal">
+					  <div class="control-group">
+					    <label class="control-label" for="jobDescription" >Job Name</label>
+					    <div class="controls">
+					      <input type="text" id="jobDescription" name="jobDescription" placeholder ="Enter profile name">
+					    </div>
+					  </div>
+					<div class="control-group">
+						<label class="control-label" for="tackTime" >Takt Time (min)</label>
+						<div class="controls">
+							<input type="text" id="tackTime" disabled="disabled" name="jobtakttime" value='60400'>
+						</div>
+					</div>
+					
+					</form>
+
+				</div>
+				<div class="tab-pane" id="job-profiles-tasks"><p>Loading items..</p></div>
+			</div>
+		</div>
+		            
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Back</button>
+	<!-- <button type="button" href="#" class="btn btn-primary save_order btn-small submit-form">Save changes</button> -->
+	<button type="button" href="#" data-dismiss="modal" data-dismiss="modal" class="btn btn-primary save_order btn-small submit-job">Save changes</button>
+	<!-- <a class="btn btn-primary btn-small" href='{{controller_base_url}}view'>Save and Assign Tasks</a> -->
+</div>

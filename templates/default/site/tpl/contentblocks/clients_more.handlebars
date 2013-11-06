@@ -1,0 +1,30 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3> Client infomation</h3>
+</div>
+<div class="modal-body">
+	<div class="row-fluid">
+		{{#unless addform}}{{../blocks/message}}{{/unless}}
+		<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#jobs-tab" data-toggle="tab">Jobs</a>
+				</li>
+				<li>
+					<a href="#task-tab" data-toggle="tab" >Task</a>
+				</li>
+				
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="jobs-tab">
+					<p>loading items....</p>
+				</div>
+				<div class="tab-pane" id="task-tab"><p>Loading items..</p></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+</div>

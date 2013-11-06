@@ -1,0 +1,11 @@
+<div class="row-fluid">
+	<form method="get">
+		Copies <input name="barcode_count" value="{{barcode_count}}" />
+		<input type="submit" value="Go" />
+	</form>
+	<div class="barcode-area">
+		{{#loop_to_limit barcode_count}}
+			<img src="{{barcode_url}}?code={{barcode}}"/>
+		{{/loop_to_limit}}
+	</div>
+</div>

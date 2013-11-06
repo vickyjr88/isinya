@@ -1,0 +1,77 @@
+{{#each content_data}}
+<tr>
+    <td class="hidden-phone">
+        <input name="supplier-check-{{supplier_id}}" type="checkbox">
+        <span class="lbl"> </span>
+    </td>
+    <td>
+        <span class='item-title text-info'>
+            <a data-width="780" data-href="{{../controller_base_url}}edit/{{supplier_id}}" class="ajax-modal" title="Edit">{{supplier_name}}</a>
+        </span>
+        <span class='item-mobile-col-3 visible-phone'>
+            <small>
+                <strong>Supplier City: </strong> {{supplier_city}}
+            </small>
+        </span>
+        {{#if desc}}<span class="item-desc"></span>{{/if}}
+        <address class="item-meta" style="display: none">
+            <small>
+                <strong>Contact person: </strong> {{supplier_contact_person}}({{supplier_contact_title}})
+            </small>
+            &nbsp;|&nbsp;
+            <small>
+                <strong>Order Email Address: </strong>{{supplier_order_email}}
+            </small>
+            &nbsp;|&nbsp;
+            <small>
+                <strong>Sales Email Address: </strong>{{supplier_sales_email}}
+            </small>
+            &nbsp;|&nbsp;
+            <small>
+                <strong>Mobile: </strong>{{supplier_cellphone}}
+            </small>
+            &nbsp;|&nbsp;
+            <small>
+                <strong>Business Phone: </strong>({{supplier_business_phone_ext}}){{supplier_business_phone}}
+            </small>
+        </address>
+        <a href="#" class="show-item-meta">
+            <i class="icon-chevron-down"></i>&nbsp;<small>Show details</small>
+        </a>
+    </td>
+    <td class="hidden-phone">{{supplier_city}}</td>
+    <td>
+        <div class="btn-group hidden-phone visible-desktop">
+            {{#user_can INVENTORY_EDIT}}
+            <button class="btn btn-mini btn-info spacer ajax-modal" title="Edit" data-width="780" data-href="{{../controller_base_url}}edit/{{supplier_id}}">
+                <i class="icon-edit"></i>
+            </button>
+            {{/user_can}}
+            {{#user_can INVENTORY_DELETE}}
+            <button class="btn btn-mini btn-danger spacer confirm-action" title="Delete" data-href="{{../controller_base_url}}delete/{{supplier_id}}" data-ajax="0" data-msg="Are you sure you want to delete {{supplier_name}}?">
+                <i class="icon-trash"></i>
+            </button>
+            {{/user_can}}
+        </div>
+        <div class="hidden-desktop visible-phone">
+            <div class="inline position-relative">
+                <button data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle">
+                    <i class="icon-ellipsis-horizontal icon-only bigger-110"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
+                    <li>
+                        <a class="ajax-modal" data-href="{{../controller_base_url}}edit/{{supplier_id}}"  data-width="320">
+                            <span class="blue"><i class="icon-edit bigger-120"></i></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="confirm-action" data-href="{{../controller_base_url}}delete/{{supplier_id}}" data-ajax="0" data-msg="Are you sure you want to delete {{supplier_name}}?">
+                            <span class="red"><i class="icon-trash bigger-120"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </td>
+</tr>
+{{/each}}

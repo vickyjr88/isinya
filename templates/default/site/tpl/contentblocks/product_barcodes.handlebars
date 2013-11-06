@@ -1,0 +1,64 @@
+{{#if export_status}}
+	<!doctype html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>HTML & CSS Avery Labels (5160) by MM at Boulder Information Services</title>
+		<link href="labels.css" rel="stylesheet" type="text/css" >
+		<style>
+		body {
+			width: 8.5in;
+			margin: 0in .1875in;
+			}
+		.label{
+			/* Avery 5160 labels -- CSS and HTML by MM at Boulder Information Services */
+			width: 2.125in; /* plus .6 inches from padding */
+			height: .975in; /* plus .125 inches from padding */
+			padding: .125in .3in 0;
+			margin-right: .125in; /* the gutter */
+
+			float: left;
+
+			text-align: center;
+			overflow: hidden;
+
+			outline: 1px dotted; /* outline doesn't occupy space like border does */
+			}
+		.page-break  {
+			clear: left;
+			display:block;
+			page-break-after:always;
+			}
+		</style>
+
+	</head>
+	<body>
+		{{#loop_to_limit barcode_count}}
+			<div class="label ikanban-card">{{product_name}}<img src="{{barcode}}" /></div>
+		{{/loop_to_limit}}
+
+	</body>
+	</html>
+{{else}}
+
+	<div class="label ikanban-card" style="text-align: center;">{{product_name}}<br/><img src="{{barcode}}" /></div>
+	<br clear="all"/>
+	<br clear="all"/>
+	<form method="get" action="{{controller_base_url}}generate_barcode/{{item.supply_id}}" >
+		<div class="control-group ">
+				<label class="control-label" for="product_code">Copies</label>
+				<div class="controls">
+						<input name="barcode_count" value="{{barcode_count}}" />
+						<span class="help-inline error"></span>
+				</div>
+		</div>
+		<input type="hidden"  name="format"  value="avery_pdf">
+		<input type="hidden"  name="code"  value="{{item_id}}">
+		<div class="control-group ">
+			<label class="control-label" for="product_code"></label>
+			<div class="controls">
+				<input type="submit" class="btn btn-mini btn-info submit-form" value="Export to PDF" />
+			</div>
+		</div>
+	</form>
+{{/if}}

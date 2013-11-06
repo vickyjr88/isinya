@@ -1,0 +1,103 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>Edit/Schedule Order</h3>
+</div>
+<div class="modal-body" id ="create_order_frm" style='position: relative;'>
+    <form class="form-horizontal">
+		<div class="schedule-buttons row-fluid">
+			<button type="button" id='add-jobs-task-schedule' data-href='{{controller_base_url}}scheduler' class="btn btn-small btn-primary child-modal pull-right">Schedule Tasks</button>
+		</div>
+	  <div class="control-group">
+	    <label class="control-label" for="inputDescription" >Job Name</label>
+	    <div class="controls">
+	      <textarea rows="2" id="inputDescription" name="orderDescription" placeholder ="Enter Order name"> </textarea>
+	    </div>
+	  </div>
+	</form>
+	<div class='gantt'></div>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<button type="button" data-dismiss="modal" class="btn btn-primary btn-small submit-form" data-form="modal-form-add">Save changes</button>
+</div>
+<script>
+	modalized = $(this.$ajaxModal).attr("id");
+	if($.trim($(this.$ajaxModal).data('extra-id')) !='' ){
+		$('#'+modalized+' textarea[name=orderDescription]').val($.trim($(this.$ajaxModal).data('extra-id')));
+			
+	} else if ($.trim($(this.$ajaxModal).data('extra-id')) =='') {
+		$('#'+modalized+' select#inputJob').css('display','block');
+		$('#'+modalized+' input#txtrepeatOrder').css('display','none');
+		$('#'+modalized+' textarea[name=orderDescription]').val('');
+	}
+	$(this.$ajaxModal).attr("data-extra-id",'');
+	$(function() {
+
+			"use strict";
+
+			$(".gantt").gantt({
+				source: [{
+					name: "Cutting",
+					desc: "cutting Items",
+					values: [{
+						from: "/Date(1320192000000)/",
+						to: "/Date(1322401600000)/",
+						label: "Cutting", 
+						customClass: "ganttRed"
+					}]
+
+				},{
+					name: "Wrapping",
+					desc: "Wrapping Items",
+					values: [{
+						from: "/Date(1323802400000)/",
+						to: "/Date(1325685200000)/",
+						label: "Wrapping", 
+						customClass: "ganttGreen"
+					}]
+				},{
+					name: "Delivery",
+					desc: "Delivery of Items",
+					values: [{
+						from: "/Date(1326785200000)/",
+						to: "/Date(1325785200000)/",
+						label: "delivery", 
+						customClass: "ganttGreen"
+					}]
+					},{
+					name: "Delivery",
+					desc: "Delivery of Items",
+					values: [{
+						from: "/Date(1326785200000)/",
+						to: "/Date(1325785200000)/",
+						label: "delivery", 
+						customClass: "ganttGreen"
+					}]
+				}],
+				navigate: "scroll",
+				maxScale: "hours",
+				itemsPerPage: 10,
+				onItemClick: function(data) {
+					alert("Item clicked - show some details");
+				},
+				onAddClick: function(dt, rowId) {
+					alert("Empty space clicked - add an item!");
+				},
+				onRender: function() {
+					if (window.console && typeof console.log === "function") {
+						console.log("chart rendered");
+					}
+				}
+			});
+
+			$(".gantt").popover({
+				selector: ".bar",
+				title: "I'm a popover",
+				content: "And I'm the content of said popover.",
+				trigger: "hover"
+			});
+
+			prettyPrint();
+
+		});
+</script>

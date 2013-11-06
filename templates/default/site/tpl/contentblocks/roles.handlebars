@@ -1,0 +1,50 @@
+
+<div class="span12">
+	<div class="button-bar">
+		<span class="buttons">
+			{{#user_can USERS_EDIT}}<a class="btn btn-mini btn-primary ajax-modal" data-href="{{controller_base_url}}edit" data-width="480" href="#add-role"><i class="icon-plus"></i> New User Type</a>{{/user_can}}
+		</span>
+	</div>
+	<table class="table table-striped table-bordered table-hover table-condensed data-table">
+		<thead>
+			<tr>
+				<th>Title</th>	
+				<th>Description</th>				
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each content_data}}
+			<tr data-id="{{id}}">
+				<td>{{name}}</td>
+				<td>{{description}}</td>
+				{{#user_can USERS_EDIT USERS_DELETE}}
+				<td>
+					<div class="hidden-phone visible-desktop btn-group">
+						{{#user_can USERS_EDIT}}<button class="btn btn-mini btn-info ajax-modal" data-width="480" title="Edit" data-href="{{../controller_base_url}}edit/{{id}}"><i class="icon-edit"></i></button>{{/user_can}}
+						{{#user_can USERS_DELETE}}<button class="btn btn-mini btn-danger confirm-action" title="Delete" data-href="{{../controller_base_url}}delete/{{id}}" data-ajax="0" data-msg="Are you sure you want to delete {{name}}?"><i class="icon-trash"></i></button>{{/user_can}}
+					</div>
+				</td>
+				{{/user_can}}
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+	window.supplyTypesTableRowData = function(formData, dataTableData, newRow){
+		var id = formData['id'];
+		var actions = null;
+		if (newRow){
+			actions = '<div class="hidden-phone visible-desktop btn-group">';
+			actions += '<button class="btn btn-mini btn-info ajax-modal" title="Edit" data-width="480" data-href="{{controller_base_url}}edit/' + id + '"><i class="icon-edit"></i></button>';
+			actions += '<button class="btn btn-mini btn-danger confirm-action" title="Delete" data-href="{{controller_base_url}}delete/' + id + '" data-ajax="0" data-msg="Are you sure you want to delete ' + formData['name'] + '?"><i class="icon-trash"></i></button>'
+			actions += '</div>';
+		}
+		return [
+			(newRow) ? dataTableData.length + 1 : null,
+			formData['name'],
+			actions
+		];
+	}
+</script>

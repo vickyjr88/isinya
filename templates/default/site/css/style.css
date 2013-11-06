@@ -1,0 +1,229 @@
+@charset "utf-8";
+body{
+	background:#fdfcfc;
+	color:#666666;
+	}
+#top-nav{
+	background:#35bc7a;
+	width:100%;
+	}
+#nav-wrapper {
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	width: 100%;
+	max-width: 1020px;
+}
+
+#wrapper {
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	width: 100%;
+	max-width: 1020px;
+}
+
+#main-nav-bar{
+	
+	}
+#isinya-logo{
+	color:#f5f5f5;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:36px;
+	}
+	
+#isinya-logo span{
+	font-size:17px;
+	}
+#main-nav-holder li, #breadcrumb-nav-holder li{
+	float:left;
+	}
+#breadcrumb-nav-holder{
+	background:#eee;
+	/*display:block;*/
+	padding:0 10px;
+	margin:10px 0;
+	}
+#main-nav-holder li a{
+	margin-top:5px;
+	color:#efefef;
+	
+}
+#breadcrumb-nav-holder li a{
+	margin-top:5px;
+	color:#4a4949;
+	padding:3px 5px;
+}
+
+
+#main-nav-holder li a:hover, #main-nav-holder li.current a{
+	background:#eee;
+	color:#35bc7a;
+}
+
+#side-bar{
+	background:#efefef;
+	padding-top:76px;
+	min-height:900px;
+	}
+#side-bar h3{
+	color:#5d6776;
+	border-bottom:#e3e3e3 2px solid;
+	padding-bottom:10px;
+	}
+#topic-content{
+	background:#fff;
+	border-top:#de7b5f 2px solid;
+	}
+#topic-content img{
+	width:100%;
+	}
+#right-col-con{
+	width: 73.66666%;
+	margin-left: 1.33333333333334%;
+	}
+.chapter-title{
+	color:#5a5a5a;
+	font-size:48px;
+	}
+	
+#side-nav-holder{
+	padding:0;
+	margin:0;
+	}
+#side-nav-holder li a{
+	background:url(../img/chapters-bg.png) no-repeat 0 16px;
+	padding-left:0;
+	padding-right:0;
+	padding-left:20px;
+	color:#000000;
+	}
+#side-nav-holder li a:hover, #side-nav-holder li.current a{
+	background:url(../img/chapters-bg-hover.png) no-repeat 0 16px;
+}
+#side-nav-holder li a:hover span, #side-nav-holder li.current a span{
+	color:#6cbb9c;
+	}
+	
+#side-nav-holder li a span{
+	display:block;
+	color:#6c84a6;
+	width:100%;
+	font-size:12px;
+	}
+.menu-ico{
+	width:137px;
+	height:172px;
+	display:block;
+	float:left;
+	margin:0 0 10px 10px;
+	}
+.menu-ico1{
+	background:url(../img/chapter-icos.jpg);
+	}
+.menu-ico1:hover{
+	background:url(../img/chapter-icos-hover.jpg);
+	}
+.menu-ico2{
+	background:url(../img/chapter-icos.jpg) -145px 0;
+	}
+.menu-ico2:hover{
+	background:url(../img/chapter-icos-hover.jpg) -145px 0;
+	}
+.menu-ico3{
+	background:url(../img/chapter-icos.jpg) -290px 0;
+	}
+.menu-ico3:hover{
+	background:url(../img/chapter-icos-hover.jpg) -290px 0;
+	}
+.menu-ico4{
+	background:url(../img/chapter-icos.jpg) -435px 0;
+	}
+.menu-ico4:hover{
+	background:url(../img/chapter-icos-hover.jpg) -435px 0;
+	}
+.menu-ico5{
+	background:url(../img/chapter-icos.jpg) -580px 0;
+	}
+.menu-ico5:hover{
+	background:url(../img/chapter-icos-hover.jpg) -580px 0;
+	}
+.menu-ico6{
+	background:url(../img/chapter-icos.jpg) 0 170px;
+	}
+.menu-ico6:hover{
+	background:url(../img/chapter-icos-hover.jpg) 0 169px;
+	}
+.menu-ico7{
+	background:url(../img/chapter-icos.jpg) -145px 170px;
+	}
+.menu-ico7:hover{
+	background:url(../img/chapter-icos-hover.jpg) -145px 169px;
+	}
+.menu-ico8{
+	background:url(../img/chapter-icos.jpg) -290px 170px;
+	}
+.menu-ico8:hover{
+	background:url(../img/chapter-icos-hover.jpg) -290px 169px;
+	}
+.menu-ico9{
+	background:url(../img/chapter-icos.jpg) -435px 171px;
+	}
+.menu-ico9:hover{
+	background:url(../img/chapter-icos-hover.jpg) -435px 172px;
+	}
+.menu-ico10{
+	background:url(../img/chapter-icos.jpg) -580px 171px;
+	}
+.menu-ico10:hover{
+	background:url(../img/chapter-icos-hover.jpg) -580px 172px;
+	}
+.start-title{
+	border-bottom:#cecece 1px solid;
+	margin-bottom:20px;
+	padding:10px 0;
+	}
+#footer-outer{
+	width:100%;
+	background: url(../img/footer-bg.jpg);
+	padding-top:6px;
+		margin-top:30px;
+}
+#footer{
+	width:100%;
+	background:#f0f0f0;
+	overflow:hidden;
+	padding:20px 0;
+	}
+
+#footer-wrap, .login-wrap{
+	width:100%;
+	max-width:745px;
+	margin:0 auto;
+	}
+	
+.social-ico{
+	width:36px;
+	height:36px;
+	display:block;
+	float:left;
+	margin:0 0 8px 8px;
+	}
+.social-ico1{
+	background:url(../img/social-ico.jpg);
+}
+.social-ico1{
+}
+
+.login-panels{
+	text-align:center;
+	padding:50px 20px;
+	}
+	
+.login-panels h4{
+	color:#144b74;
+	}

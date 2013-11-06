@@ -1,0 +1,78 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3>New Order</h3>
+</div>
+<div class="modal-body" id ="create_order_frm">
+    <form class="form-horizontal">
+	  <div class="control-group">
+	    <label class="control-label" for="inputDescription" >Order Description</label>
+	    <div class="controls">
+	      <!-- <input type="text" id="inputDescription" name="orderDescription" placeholder ="Enter Order name"> -->
+	      <textarea rows="2" id="inputDescription" name="orderDescription" placeholder ="Enter order description"> </textarea>
+	    </div>
+	  </div>
+	  <div class="control-group">
+		<label class="control-label" for="jobQuantity" >Output quantity</label>
+		<div class="controls">
+		  <input type="text" id="jobQuantity" name="jobQuantity" placeholder ="">
+		</div>
+	  </div>
+	 		  
+	
+	  <div class ="control-group">
+	  		<label class="control-label" for="inputClients">Client</label>
+	  		<div class="controls">
+	  		<select id ="inputClients">  
+			  <option value ="default">Select</option>
+	  			<optgroup label ="Not Found">
+	  				<option value ="new_item">Create New Client</option>
+	  			</optgroup>
+			  	<optgroup label ="List Of Clients" id ="org_client">
+			  		<option>CircleK</option>
+			  		<option>KSolutions</option>
+			  		<option>CircSolutions</option>
+	
+	  			</optgroup>
+			</select></div>
+	  </div>
+	
+	  <div class ="control-group">
+	  	
+	  		<label class="control-label" for="inputJob">Job Profile</label>
+	  		<div class="controls">
+  			<!-- <input type="text" id='txtinputOrder' name='txtinputjob' value='' style='display:none;'  disabled="disabled" > -->
+	  		<select id ="inputJob">  
+	  			<option value = "not">Select</option>
+	  			<optgroup label ="Not Found">
+	  				<option value ="new_item">Create New Job</option>
+	  			</optgroup>
+			  	<optgroup label ="List Of Jobs" id ="org_jobs">
+			  		<option>Iphone</option>
+			  		<option>Computer</option>
+			  		<option>Cooking</option>
+	  			</optgroup>
+			</select></div>
+	  </div>
+		<div class="control-group">
+			<label class="control-label">&nbsp;</label>
+			<div class="controls">
+				<label>
+					<input type="checkbox" id='repeatOrder' name="repeatOrder"><span class="lbl"> Repeat Order?</span>
+				</label>
+			</div>
+		</div>
+	  
+	  <div class="control-group">
+				  <label class="control-label" for="orderEndDate">Promise Date</label>
+				  <div class="controls">
+					<input type="text" class='date-picker' name="orderEndDate" id="order_stop_date">
+				  </div>
+			</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-small">Close</button>
+	<!-- <button type="button" btn-small submit-form class="btn btn-primary btn-small submit-form" data-form="modal-form-add">Save</button> -->
+	<button type="button" href="#" data-dismiss="modal" class="btn btn-primary save_order btn-small submit-order">Save changes</button>
+	<!-- <a class="btn btn-primary btn-small" href='{{controller_base_url}}view'>Save and Assign Tasks</a> -->
+</div>

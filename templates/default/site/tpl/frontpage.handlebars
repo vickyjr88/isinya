@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang={{meta_language}}>
+	<head>
+		<meta charset="{{charset}}" />
+		<title>{{title_prefix}}{{page_title}}{{title_suffix}}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<base href="{{base_url}}"/>
+		<meta name="keywords" content="{{meta_keywords}}" />
+		<meta name="description" content="{{meta_description)}}" />
+		<meta name="copyright" content="{{meta_copyright}}" />
+		{{&headglobalscripts}}
+		{{&globalstyles}}
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+		{{&pagestyles}}
+
+		<!-- ace styles -->
+		{{&theme_css}}
+		<!--[if lt IE 9]>
+		  <link rel="stylesheet" href="css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!--[if lt IE 9]>
+			<script src="{{template_path}}js/html5shiv.js"></script>
+		<![endif]-->
+		{{#if comment}}
+		<!--<link type="text/css" rel="stylesheet" href="{{template_path}}css/print.csss" media="print" />-->
+		{{/if}}
+		{{#render_script js/head-scripts.js}}
+	</head>
+	<body><!--<div class="slide-main">
+  <button class="btn-info">Button</button>
+  <div class="slide-container">paste your main content code here</div>
+</div>-->
+		{{>frontpage-header}}
+		<div class="container-fluid" id="main-container">
+				
+			<div id="main-content" class="clearfix">				
+				<div id="page-content" class="clearfix">
+					<div class="page-header position-relative">
+					<h1 style="color: #fff;">{{#if page_info}}
+						<small class="hidden-tablet hidden-phone">
+						<i class="icon-double-angle-right"></i> {{page_info}}</small>{{/if}}</h1>
+					</div>
+					{{>blocks/message}}
+					<div class="row-fluid">
+						{{>content}}
+						{{>blocks/pagination}}
+					 </div>
+				</div>
+				
+			</div>
+		</div>
+		<div id="ajax-modal" class="modal hide fade" tabindex="-1" data-width="760"></div>
+		<div id="ajax-child-modal" class="modal hide fade" tabindex="-1" data-width="760"></div>
+		<div id="confirm-modal" class="modal hide fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+			<div class="modal-header"><h3>Confirm action!</h3></div>
+			<div class="modal-body">
+				<p id="confirm-message"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-small">Cancel</button>
+				<button type="button" data-dismiss="modal" class="btn btn-small btn-primary btn-confirm">Confirm</button>
+			</div>
+		</div>
+		<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
+			<i class="icon-double-angle-up icon-only"></i>
+		</a>
+
+		{{&globalscripts}}
+		{{&pagescripts}}
+		{{#if comment}}
+		<!--<script type="text/javascript" src="js/jquery-ui-1.10.2.custom.min.js"></script>
+
+		<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+
+		<script type="text/javascript" src="js/fullcalendar.min.js"></script>
+
+		<script type="text/javascript" src="js/bootbox.min.js"></script>-->
+
+
+		<!-- ace scripts -->
+		<!--<script src="js/ace-elements.min.js"></script>
+		<script src="js/ace.min.js"></script>-->
+
+
+		<!-- inline scripts related to this page -->
+		{{/if}}
+
+		
+	</body>
+</html>

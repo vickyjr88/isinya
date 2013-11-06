@@ -1,0 +1,47 @@
+<?php defined('SYSPATH') OR die('No direct script access.'); ?>
+
+2013-11-05 00:11:48 --- EMERGENCY: ErrorException [ 8 ]: Trying to get property of non-object ~ APPPATH/classes/Controller/Chat.php [ 210 ] in /var/www/epro/application/classes/Controller/Chat.php:210
+2013-11-05 00:11:48 --- DEBUG: #0 /var/www/epro/application/classes/Controller/Chat.php(210): Kohana_Core::error_handler(8, 'Trying to get p...', '/var/www/epro/a...', 210, Array)
+#1 /var/www/epro/system/classes/Kohana/Controller.php(84): Controller_Chat->action_conversations()
+#2 [internal function]: Kohana_Controller->execute()
+#3 /var/www/epro/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Chat))
+#4 /var/www/epro/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 /var/www/epro/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#6 /var/www/epro/index.php(118): Kohana_Request->execute()
+#7 {main} in /var/www/epro/application/classes/Controller/Chat.php:210
+2013-11-05 23:43:22 --- EMERGENCY: ErrorException [ 1 ]: Class 'Controller_Home' not found ~ APPPATH/classes/Controller/Home.php [ 18 ] in :
+2013-11-05 23:43:22 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-11-05 23:43:57 --- EMERGENCY: Database_Exception [ 1146 ]: Table 'isinya.permissions' doesn't exist [ SHOW FULL COLUMNS FROM `permissions` ] ~ MODPATH/database/classes/Kohana/Database/MySQL.php [ 194 ] in /var/www/isinya/modules/database/classes/Kohana/Database/MySQL.php:358
+2013-11-05 23:43:57 --- DEBUG: #0 /var/www/isinya/modules/database/classes/Kohana/Database/MySQL.php(358): Kohana_Database_MySQL->query(1, 'SHOW FULL COLUM...', false)
+#1 /var/www/isinya/modules/orm/classes/Kohana/ORM.php(1665): Kohana_Database_MySQL->list_columns('permissions')
+#2 /var/www/isinya/modules/orm/classes/Kohana/ORM.php(441): Kohana_ORM->list_columns()
+#3 /var/www/isinya/modules/orm/classes/Kohana/ORM.php(386): Kohana_ORM->reload_columns()
+#4 /var/www/isinya/modules/orm/classes/Kohana/ORM.php(254): Kohana_ORM->_initialize()
+#5 /var/www/isinya/modules/orm/classes/Kohana/ORM.php(46): Kohana_ORM->__construct(NULL)
+#6 /var/www/isinya/application/classes/Controller/App.php(1217): Kohana_ORM::factory('Permission')
+#7 /var/www/isinya/application/classes/Controller/App.php(1301): Controller_App->_user_has_permission('CLIENTS_VIEW')
+#8 [internal function]: Controller_App->{closure}(Array)
+#9 /var/www/isinya/application/classes/Controller/App.php(1275): array_filter(Array, Object(Closure))
+#10 /var/www/isinya/application/classes/Controller/App.php(1271): Controller_App->array_filter_recursive(Array, Object(Closure))
+#11 /var/www/isinya/application/classes/Controller/App.php(1271): Controller_App->array_filter_recursive(Array, Object(Closure))
+#12 /var/www/isinya/application/classes/Controller/App.php(1303): Controller_App->array_filter_recursive(Array, Object(Closure))
+#13 /var/www/isinya/application/classes/Controller/App.php(873): Controller_App->_filter_menu_based_on_permissions(Array, 'permission')
+#14 [internal function]: Controller_App->{closure}(Object(Handlebars_Template), Object(Handlebars_Context), 'menuname curren...', '')
+#15 /var/www/isinya/modules/beautiful-view/vendor/Handlebars/Template.php(252): call_user_func_array(Object(Closure), Array)
+#16 /var/www/isinya/modules/beautiful-view/vendor/Handlebars/Template.php(149): Handlebars_Template->_section(Object(Handlebars_Context), Array)
+#17 /var/www/isinya/modules/beautiful-view/vendor/Handlebars/Template.php(317): Handlebars_Template->render(Object(Handlebars_Context))
+#18 /var/www/isinya/modules/beautiful-view/vendor/Handlebars/Template.php(163): Handlebars_Template->_partial(Object(Handlebars_Context), Array)
+#19 /var/www/isinya/modules/beautiful-view/classes/Template/Handlebars.php(78): Handlebars_Template->render(Object(View_SiteLayout))
+#20 /var/www/isinya/modules/beautiful-view/classes/Beautiful/View.php(291): Template_Handlebars->render(Object(View_SiteLayout))
+#21 /var/www/isinya/modules/beautiful-view/classes/Beautiful/View.php(207): Beautiful_View->render()
+#22 /var/www/isinya/system/classes/Kohana/Response.php(160): Beautiful_View->__toString()
+#23 /var/www/isinya/application/classes/Controller/App.php(1704): Kohana_Response->body(Object(View))
+#24 /var/www/isinya/application/classes/Controller/Site.php(144): Controller_App->after()
+#25 /var/www/isinya/system/classes/Kohana/Controller.php(87): Controller_Site->after()
+#26 [internal function]: Kohana_Controller->execute()
+#27 /var/www/isinya/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Home))
+#28 /var/www/isinya/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#29 /var/www/isinya/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#30 /var/www/isinya/index.php(118): Kohana_Request->execute()
+#31 {main} in /var/www/isinya/modules/database/classes/Kohana/Database/MySQL.php:358

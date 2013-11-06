@@ -1,0 +1,61 @@
+<div class="span12">
+    <div class="button-bar">
+        <span class="buttons">
+            {{#user_can INVENTORY_EDIT}}
+            <a class="btn btn-mini btn-primary ajax-modal" data-width="780" href="#add-supplier" data-href="{{controller_base_url}}edit">
+                <i class="icon-plus"></i> Supplier
+            </a>
+            {{/user_can}}
+        </span>
+    </div>
+    <div id="suppliers-search-container" class="table-search-container">
+        <form class="form-inline">
+            <label for="suppliers-details-search">
+                Search: <input id="suppliers-details-search" class="input-medium" type="text" name="sSearch" value="" placeholder="enter detail(s)" />
+            </label>
+            <label for="suppliers-city-search">
+                from: <input type="text" placeholder="yyyy-mm-dd - yyyy-mm-dd" class="date-range-filter" name="sSearch_date-range" value="" />
+            </label>
+            <button id="suppliers-search-btn" class="btn btn-mini btn-primary data-tables-submit-search" title="Apply search filters">Search</button>
+        </form>
+    </div>
+    <table data-search-container="suppliers-search-container" data-search-btn="suppliers-search-btn" data-search-clear-btn="suppliers-search-btn-clear" data-columns="null,supplier_name,supplier_city,null" data-row-tpl="supplier-list-row" class="data-table ajax-data-table table table-striped table-bordered table-hover table-condensed" data-ajax-source="suppliers">
+        <thead>
+            <tr>
+                <th class="hidden-phone">
+                    <input type="checkbox">
+                    <span class="lbl"> </span>
+                </th>
+                <th>Supplier Details</th>
+                <th class="hidden-phone">Supplier City</th>
+                <th><span class="hidden-phone visible-desktop">Actions</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{>contentblocks/supplier-list-row}}
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	window.suppliersTableRowData = function(formData, dataTableData, newRow) {
+		var id = formData['id'];
+		var actions = null;
+		if (newRow){
+			actions = '<div class="hidden-phone visible-desktop btn-group">';
+			actions += '<button class="btn btn-mini btn-info ajax-modal" title="Edit" data-width="900" data-href="{{controller_base_url}}edit/' + id + '"><i class="icon-edit"></i></button>';
+			actions += '<button class="btn btn-mini btn-danger confirm-action" title="Delete" data-href="{{controller_base_url}}delete/' + id + '" data-ajax="0" data-msg="Are you sure you want to delete ' + formData['supplier_name'] + '?"><i class="icon-trash"></i></button>';
+			actions += '</div>';
+		}
+		return [
+			(newRow) ? dataTableData.length + 1 : null,
+			formData['supplier_code'],
+			formData['supplier_name'],
+			formData['supplier_contact_title'] + ' ' + formData['supplier_contact_person'],
+			formData['supplier_order_email'],
+			formData['supplier_sales_email'],
+			formData['supplier_cellphone'],
+			formData['supplier_business_phone'] + ' ext. ' + formData['supplier_business_phone_ext'],
+			actions
+		];
+	};
+</script>
